@@ -14,9 +14,15 @@ func _ready() -> void:
 		
 func _physics_process(delta: float) -> void:
 	for index in get_child_count() - 1:
+		
 		var layer = get_child(index)
 		if layer is ParallaxLayer:
 			#+= positive if the player is moving to left (background moves to right)
 			#-= negative if the player is moving to right (background moves to left)
 			layer.motion_offset.x += delta * layer_speed[index]
+			
+			
+	
+			
+			
 		

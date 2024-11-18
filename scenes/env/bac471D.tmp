@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://5d133lq3wd2m"]
+[gd_scene load_steps=7 format=3 uid="uid://5d133lq3wd2m"]
 
 [ext_resource type="Script" path="res://scripts/env/background.gd" id="1_c7nsi"]
 [ext_resource type="Texture2D" uid="uid://dfg722an8r2ll" path="res://assets/tile/parallax_background/layer_1.png" id="1_fqke5"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://br2kusl7w7v8k" path="res://assets/tile/parallax_background/layer_3.png" id="3_emhmx"]
 [ext_resource type="Texture2D" uid="uid://dvqxwcoeug54x" path="res://assets/tile/parallax_background/layer_4.png" id="4_whlqa"]
 [ext_resource type="PackedScene" uid="uid://brq6323tjx1xw" path="res://scenes/env/mask.tscn" id="6_77a24"]
-[ext_resource type="Script" path="res://scenes/env/day_time_cycle.gd" id="7_7rhrt"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 script = ExtResource("1_c7nsi")
@@ -55,6 +54,4 @@ offset_bottom = 40.0
 texture = ExtResource("3_emhmx")
 
 [node name="Mask" parent="." instance=ExtResource("6_77a24")]
-color = Color(0.920042, 0.290512, 0.574543, 1)
-script = ExtResource("7_7rhrt")
-hour = 6
+color = Color(0.562851, 0.57228, 0.516589, 1)
