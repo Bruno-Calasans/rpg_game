@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhexfgimjwtt"]
+
+[ext_resource type="Texture2D" uid="uid://btrwmc5f4sd37" path="res://assets/enemy/crabby/attack.png" id="1_fsf85"]
+
+[node name="Attack" type="Sprite2D"]
+position = Vector2(156, 87)
+texture = ExtResource("1_fsf85")
