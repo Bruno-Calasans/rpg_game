@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://br2kusl7w7v8k" path="res://assets/tile/parallax_background/layer_3.png" id="3_emhmx"]
 [ext_resource type="Texture2D" uid="uid://dvqxwcoeug54x" path="res://assets/tile/parallax_background/layer_4.png" id="4_whlqa"]
 [ext_resource type="PackedScene" uid="uid://brq6323tjx1xw" path="res://scenes/env/mask.tscn" id="6_77a24"]
-[ext_resource type="Script" path="res://scenes/env/day_time_cycle.gd" id="7_7rhrt"]
+[ext_resource type="Script" path="res://scripts/env/day_time_cycle.gd" id="7_7rhrt"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 script = ExtResource("1_c7nsi")
