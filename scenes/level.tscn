@@ -43,3 +43,5 @@ script = null
 
 [node name="Player" parent="." instance=ExtResource("9_iycvf")]
 position = Vector2(19, 95)
+jump_speed = -200
+player_gravity = 400
