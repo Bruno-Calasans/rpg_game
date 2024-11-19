@@ -1,0 +1,13 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://fiqqxqeni6sw"]
+
+[ext_resource type="Texture2D" uid="uid://u2vpciq5naw8" path="res://assets/tile/decoration/lamp.png" id="1_0y4h6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jvqjn"]
+texture = ExtResource("1_0y4h6")
+texture_region_size = Vector2i(32, 64)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 16)
+
+[resource]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_jvqjn")

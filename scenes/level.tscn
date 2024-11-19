@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=4 uid="uid://ddohlvb71vd62"]
+
+[ext_resource type="TileSet" uid="uid://bu3bhgiisr7a3" path="res://resources/fences.tres" id="1_pr4i2"]
+[ext_resource type="TileSet" uid="uid://fiqqxqeni6sw" path="res://resources/decoration.tres" id="2_nwnhr"]
+[ext_resource type="TileSet" uid="uid://b7gxjo06ymdn4" path="res://resources/floor.tres" id="3_nprij"]
+[ext_resource type="TileSet" uid="uid://exhavqj0qa63" path="res://resources/rock.tres" id="4_fx3ci"]
+[ext_resource type="TileSet" uid="uid://bbfdq6fp81xxo" path="res://resources/grass.tres" id="5_vee01"]
+[ext_resource type="PackedScene" uid="uid://5d133lq3wd2m" path="res://scenes/env/background.tscn" id="6_ukfhb"]
+[ext_resource type="PackedScene" uid="uid://brq6323tjx1xw" path="res://scenes/env/mask.tscn" id="7_51g60"]
+[ext_resource type="Script" path="res://scripts/env/day_time_cycle_level.gd" id="8_eifru"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("8_eifru")
+hour = 11
+
+[node name="LevelDesign" type="Node2D" parent="."]
+
+[node name="Fence" type="TileMapLayer" parent="LevelDesign"]
+tile_map_data = PackedByteArray("AAABAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAQAAMAAAAAAAAAAAAOAAMAAAAAAAAAAAA=")
+tile_set = ExtResource("1_pr4i2")
+
+[node name="Decoration" type="TileMapLayer" parent="LevelDesign"]
+tile_map_data = PackedByteArray("AAAGAAMAAAAAAAAAAAAAAAMAAAAAAAAAABANAAMAAAAAAAAAAAARAAMAAAAAAAAAAAA=")
+tile_set = ExtResource("2_nwnhr")
+
+[node name="Floor" type="TileMapLayer" parent="LevelDesign"]
+tile_map_data = PackedByteArray("AAAAAAQAAAAAAAAAAAAAAAUAAAAAAAIAAAABAAQAAAABAAAAAAABAAUAAAABAAIAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAFAAQAAAABAAAAAAAEAAQAAAABAAAAAAAGAAQAAAABAAAAAAAHAAQAAAABAAAAAAAIAAQAAAABAAAAAAAJAAQAAAABAAAAAAAKAAQAAAABAAAAAAAKAAUAAAABAAIAAAAJAAUAAAABAAIAAAAIAAUAAAABAAIAAAAHAAUAAAABAAIAAAAGAAUAAAABAAIAAAAFAAUAAAABAAIAAAAEAAUAAAABAAIAAAADAAUAAAABAAIAAAACAAUAAAABAAIAAAALAAQAAAABAAAAAAAMAAQAAAABAAAAAAANAAQAAAABAAAAAAAOAAQAAAABAAAAAAAPAAQAAAABAAAAAAAQAAQAAAABAAAAAAARAAQAAAABAAAAAAAQAAUAAAABAAIAAAAPAAUAAAABAAIAAAAOAAUAAAABAAIAAAANAAUAAAABAAIAAAAMAAUAAAABAAIAAAALAAUAAAABAAIAAAARAAUAAAABAAIAAAASAAUAAAABAAIAAAASAAQAAAABAAAAAAATAAQAAAACAAAAAAATAAUAAAACAAIAAAA=")
+tile_set = ExtResource("3_nprij")
+
+[node name="Rock" type="TileMapLayer" parent="LevelDesign"]
+tile_map_data = PackedByteArray("AAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAIAAMAAgAAAAAAAAAGAAMAAAAAAAAAAAARAAMAAAAAAAAAAAA=")
+tile_set = ExtResource("4_fx3ci")
+
+[node name="Grass" type="TileMapLayer" parent="LevelDesign"]
+tile_map_data = PackedByteArray("AAAOAAcAAAAAAAAAAAANAAcAAAAAAAAAAAAMAAcAAQAAAAAAAAASAAcAAAAAAAAAAAAUAAcAAAAAAAAAAAAYAAcAAAAAAAAAAAAZAAcAAAAAAAAAAAAaAAcAAAAAAAAAAAAbAAcAAAAAAAAAAAAcAAcAAAAAAAAAAAAjAAcAAAAAAAAAAAAhAAcAAAAAAAAAAAABAAcAAQAAAAAAAAACAAcAAQAAAAAAAAAAAAcAAQAAAAAAAAA=")
+tile_set = ExtResource("5_vee01")
+
+[node name="Mask" parent="LevelDesign" instance=ExtResource("7_51g60")]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("6_ukfhb")]
+script = null

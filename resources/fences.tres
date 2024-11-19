@@ -1,0 +1,21 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bu3bhgiisr7a3"]
+
+[ext_resource type="Texture2D" uid="uid://cwacba73kmc8t" path="res://assets/tile/decoration/fence_1.png" id="1_rv82s"]
+[ext_resource type="Texture2D" uid="uid://dv1fmcaltm15u" path="res://assets/tile/decoration/fence_2.png" id="2_yry0m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p2kyr"]
+texture = ExtResource("1_rv82s")
+texture_region_size = Vector2i(32, 32)
+0:0/size_in_atlas = Vector2i(3, 1)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pkuul"]
+texture = ExtResource("2_yry0m")
+texture_region_size = Vector2i(32, 32)
+0:0/size_in_atlas = Vector2i(3, 1)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_p2kyr")
+sources/1 = SubResource("TileSetAtlasSource_pkuul")
