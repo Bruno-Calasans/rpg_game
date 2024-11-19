@@ -12,7 +12,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Texture:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -34,17 +34,17 @@ script = ExtResource("1_eqfwv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="Texture" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_2vdlw")
 hframes = 8
 vframes = 11
 frame = 1
+script = ExtResource("3_ay5yg")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_qi4n1")
 }
-script = ExtResource("3_ay5yg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false

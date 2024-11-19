@@ -1,4 +1,5 @@
 extends Node2D
+class_name Level
 
 @export var hour = 0
 @onready var mask1 = $LevelDesign/Mask

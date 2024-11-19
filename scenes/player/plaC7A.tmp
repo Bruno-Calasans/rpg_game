@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cunbt26748t6p"]
+[gd_scene load_steps=7 format=3 uid="uid://cunbt26748t6p"]
 
 [ext_resource type="Texture2D" uid="uid://c3wea8v8nemk6" path="res://assets/player/char_blue.png" id="1_2vdlw"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_eqfwv"]
-[ext_resource type="Script" path="res://scripts/player/player_animation.gd" id="3_ay5yg"]
 [ext_resource type="Animation" uid="uid://d2dfmwog53kix" path="res://scenes/player/animations/idle.res" id="3_qjd6d"]
 [ext_resource type="Animation" uid="uid://bbx4bf4ymutrc" path="res://scenes/player/animations/run.res" id="4_gx4sr"]
 
@@ -12,7 +11,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Texture:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -34,7 +33,7 @@ script = ExtResource("1_eqfwv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="Texture" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_2vdlw")
 hframes = 8
 vframes = 11
@@ -44,7 +43,5 @@ frame = 1
 libraries = {
 "": SubResource("AnimationLibrary_qi4n1")
 }
-script = ExtResource("3_ay5yg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-enabled = false

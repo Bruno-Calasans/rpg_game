@@ -1,4 +1,5 @@
 extends ParallaxBackground
+class_name Bakground
 
 # it says if the parallax backgroound can move automatically
 @export_category('Background vars')
