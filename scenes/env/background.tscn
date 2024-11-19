@@ -54,3 +54,4 @@ offset_bottom = 40.0
 texture = ExtResource("3_emhmx")
 
 [node name="Mask" parent="." instance=ExtResource("6_77a24")]
+visible = false

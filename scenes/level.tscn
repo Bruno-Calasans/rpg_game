@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cunbt26748t6p" path="res://scenes/player/player.tscn" id="9_iycvf"]
 
 [node name="Level" type="Node2D"]
+texture_filter = 1
 script = ExtResource("8_eifru")
 hour = 11
 
@@ -37,11 +38,11 @@ tile_map_data = PackedByteArray("AAAOAAcAAAAAAAAAAAANAAcAAAAAAAAAAAAMAAcAAQAAAAA
 tile_set = ExtResource("5_vee01")
 
 [node name="Mask" parent="LevelDesign" instance=ExtResource("7_51g60")]
+visible = false
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("6_ukfhb")]
 script = null
 
 [node name="Player" parent="." instance=ExtResource("9_iycvf")]
 position = Vector2(19, 95)
-jump_speed = -200
-player_gravity = 400
+player_gravity = 100
