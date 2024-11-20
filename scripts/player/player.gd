@@ -1,18 +1,34 @@
 extends CharacterBody2D
 class_name Player
 
+@export_category('Objects')
 @onready var animation: AnimationPlayer = get_node("Animation")
-@export var speed = 150
-@export var jump_speed = 75
-@export var player_gravity = 1
-@export var jump_count = 0
-@export var landing = false
-@export var attacking = false
-@export var crouching = false
-@export var can_crouch_now = false
-@export var parrying = false
-@export var can_parry_now = false
-@export var can_move = true
+@onready var wall_ray: RayCast2D = get_node('WallRay')
+
+@export_category('Horizontal Movement')
+@export var speed = 100 # how much the x value is going increase (left or right)
+
+@export_category('Vertical Movement')
+@export var jump_speed = -175 # how much the y (up) value is going increase (when jumping)
+@export var player_gravity = 350 # how much the y (down) value is going increase
+@export var jump_count = 0 # how much jumps the player can do it
+@export var landing = false # if the player is landing after jumping
+
+@export_category('Main Actions')
+@export var attacking = false # if the player is attacking
+@export var crouching = false # if the player is crouching
+@export var parrying = false # if the player is defending (using the shield)
+@export var can_move = true # if the player can move after it peforms some action
+@export var can_crouch_now = false # if the player can crouch after crouching before
+@export var can_parry_now = false # if the player can parry after parrying before
+
+@export_category('Wall Slide')
+@export var on_wall = false # if the player is on the wall
+@export var on_wall_before = false # if the player is on the wall
+@export var wall_jump_speed = -150 # how much the y (up) value is going increase (when jumping on the wall)
+@export var wall_gravity = 115 # how much the y (down) value is going increase (when sliding on the wall)
+@export var wall_impulse_speed = 500 # how much the x value is going increase (left or right) after jumping
+@export var wall_jump_direction = 1 # 1 (right) or -1 (left)
 
 func horizontal_movement():
 	# if you press both right and left, the character doesn't move (-1 + 1)
@@ -27,21 +43,55 @@ func horizontal_movement():
 
 func vertical_moviment():
 	# it resets jump count
-	if is_on_floor():
+	if is_on_floor() or is_on_wall():
 		jump_count = 0
 	
 	# it lmits the number max of jumps by 2 and while not doind any other actions
 	var can_jump = jump_count < 2 and can_move
 	if Input.is_action_just_pressed('jump') and can_jump:
 		jump_count += 1
-		velocity.y = jump_speed
+		# jump from a wall
+		if is_next_wall() and not is_on_floor():
+			velocity.y = wall_jump_speed
+			velocity.x += wall_impulse_speed * wall_jump_direction
+		# jump from a floor
+		else:
+			print('jumping')
+			velocity.y = jump_speed
 		
 func gravity(delta: float):
-	# it increases or decreases the player jumping speed or falling speed
-	velocity.y += delta * player_gravity
-	# it limits the falling speed or jumping speed
-	if velocity.y > player_gravity: velocity.y = player_gravity
-
+	
+	# gravity is modified if the player is next a wall	
+	if is_next_wall(): 
+		velocity.y += delta * wall_gravity
+		
+		# it limits the wall_gravity
+		if velocity.y >= wall_gravity: 
+			velocity.y = wall_gravity
+		
+	# gravity in the air
+	else: 
+		# it increases or decreases the player jumping speed or falling speed
+		velocity.y += delta * player_gravity
+		
+		# it limits the falling speed or jumping speed
+		if velocity.y >= player_gravity: 
+			velocity.y = player_gravity
+	
+func is_next_wall():
+	# if the player is on the wall without touching the floor
+	if wall_ray.is_colliding() and not is_on_floor(): 
+		
+		# if it's the first time the player is on the wall
+		if not on_wall_before:
+			# it resets vertical velocity
+			velocity.y = 0
+			on_wall_before = true
+		return true
+		
+	on_wall_before = false
+	return false
+		
 func attack():
 	var can_attack = not attacking and not crouching and not parrying
 	if Input.is_action_just_pressed('attack') and can_attack and is_on_floor():
