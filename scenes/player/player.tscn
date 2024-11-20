@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://cunbt26748t6p"]
+[gd_scene load_steps=22 format=3 uid="uid://cunbt26748t6p"]
 
 [ext_resource type="Texture2D" uid="uid://c3wea8v8nemk6" path="res://assets/player/char_blue.png" id="1_2vdlw"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_eqfwv"]
 [ext_resource type="Script" path="res://scripts/player/player_animation.gd" id="3_ay5yg"]
 [ext_resource type="Animation" uid="uid://d2dfmwog53kix" path="res://scenes/player/animations/idle.res" id="3_qjd6d"]
 [ext_resource type="Animation" uid="uid://bbx4bf4ymutrc" path="res://scenes/player/animations/run.res" id="4_gx4sr"]
+[ext_resource type="Texture2D" uid="uid://b8cnobvecp7sp" path="res://assets/effect/light.png" id="6_vj1o8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xocqa"]
 size = Vector2(15, 32)
@@ -324,6 +325,69 @@ _data = {
 "wall_slide": SubResource("Animation_7ylh1")
 }
 
+[sub_resource type="Animation" id="Animation_py6y1"]
+resource_name = "pulse"
+length = 8.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.1, 0.2, 0.3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.4, 0.6, 0.8]
+}
+
+[sub_resource type="Animation" id="Animation_r8on4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xaf0y"]
+_data = {
+"RESET": SubResource("Animation_r8on4"),
+"pulse": SubResource("Animation_py6y1")
+}
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_eqfwv")
 player_gravity = 150
@@ -363,5 +427,17 @@ disabled = true
 
 [node name="WallRay" type="RayCast2D" parent="."]
 target_position = Vector2(10, 0)
+
+[node name="Light" type="PointLight2D" parent="."]
+color = Color(1, 1, 3, 1)
+energy = 0.8
+texture = ExtResource("6_vj1o8")
+texture_scale = 0.2
+
+[node name="LightAnimation" type="AnimationPlayer" parent="Light"]
+libraries = {
+"": SubResource("AnimationLibrary_xaf0y")
+}
+autoplay = "pulse"
 
 [connection signal="animation_finished" from="Animation" to="Animation" method="_on_animation_finished"]
