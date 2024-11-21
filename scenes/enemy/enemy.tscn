@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://o065ta0ghwgy"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_rr20k"]
+[ext_resource type="Script" path="res://scripts/player/detection_area.gd" id="2_8prk1"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_rr20k")
+
+[node name="Texture" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="FloorRayCast" type="RayCast2D" parent="."]
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="AttackArea"]
+
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="CollisionArea"]
+
+[node name="DetectionArea" type="Area2D" parent="."]
+script = ExtResource("2_8prk1")
+
+[node name="Collision" type="CollisionShape2D" parent="DetectionArea"]
+
+[connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="on_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="on_detection_area_body_exited"]

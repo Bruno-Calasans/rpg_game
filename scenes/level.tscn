@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://brq6323tjx1xw" path="res://scenes/env/mask.tscn" id="7_51g60"]
 [ext_resource type="Script" path="res://scripts/env/level.gd" id="8_eifru"]
 [ext_resource type="PackedScene" uid="uid://cunbt26748t6p" path="res://scenes/player/player.tscn" id="9_iycvf"]
-[ext_resource type="PackedScene" uid="uid://3pr5i45er1kx" path="res://scenes/enemy/enemy_template.tscn" id="10_gxttt"]
+[ext_resource type="PackedScene" uid="uid://o065ta0ghwgy" path="res://scenes/enemy/enemy.tscn" id="10_7a1qa"]
 
 [sub_resource type="Environment" id="Environment_gro8d"]
 background_mode = 3
@@ -56,4 +56,4 @@ player_gravity = 350
 [node name="EnvEffect" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gro8d")
 
-[node name="EnemyTemplate" parent="." instance=ExtResource("10_gxttt")]
+[node name="Enemy" parent="." instance=ExtResource("10_7a1qa")]
