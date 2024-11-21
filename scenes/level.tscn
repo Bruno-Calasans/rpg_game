@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://ddohlvb71vd62"]
+[gd_scene load_steps=12 format=4 uid="uid://ddohlvb71vd62"]
 
 [ext_resource type="TileSet" uid="uid://bu3bhgiisr7a3" path="res://resources/fences.tres" id="1_pr4i2"]
 [ext_resource type="TileSet" uid="uid://fiqqxqeni6sw" path="res://resources/decoration.tres" id="2_nwnhr"]
@@ -9,12 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://brq6323tjx1xw" path="res://scenes/env/mask.tscn" id="7_51g60"]
 [ext_resource type="Script" path="res://scripts/env/level.gd" id="8_eifru"]
 [ext_resource type="PackedScene" uid="uid://cunbt26748t6p" path="res://scenes/player/player.tscn" id="9_iycvf"]
+[ext_resource type="PackedScene" uid="uid://3pr5i45er1kx" path="res://scenes/enemy/enemy_template.tscn" id="10_gxttt"]
 
 [sub_resource type="Environment" id="Environment_gro8d"]
 background_mode = 3
 glow_enabled = true
 glow_intensity = 1.5
-glow_bloom = 0.01
 glow_blend_mode = 0
 
 [node name="Level" type="Node2D"]
@@ -55,3 +55,5 @@ player_gravity = 350
 
 [node name="EnvEffect" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gro8d")
+
+[node name="EnemyTemplate" parent="." instance=ExtResource("10_gxttt")]
