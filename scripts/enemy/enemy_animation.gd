@@ -1,5 +1,5 @@
 extends AnimationPlayer
-class_name EnemyTexture
+class_name EnemyAnimation
 
 @onready var enemy: Enemy = get_parent()
 @onready var texture: Sprite2D = get_node('Texture')
@@ -28,10 +28,10 @@ func verify_direction(velocity: Vector2):
 		# deslocate the raycast position to the left
 		floor_raycast.position.x = -default_floor_raycast_x_position
 	
-func move_behavior(velocity):
+func horizontal_behavior(velocity: Vector2):
 	pass
 	
-func attack_behavior(velocity):
+func attack_behavior(velocity: Vector2):
 	pass
 	
 func on_current_animation_changed(name: String) -> void:

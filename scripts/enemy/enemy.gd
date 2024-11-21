@@ -9,11 +9,11 @@ class_name Enemy
 
 @export_category('Attack Variables')
 @export var can_attack = false
+@export var aproximity_threshold = 1
 
 @export_category('Horizontal Move')
 @export var enemy_gravity = 75
 @export var enemy_speed = 1
-@export var aproximity_threshold = 1
 
 func stop_enemy():
 	velocity.x = 0
