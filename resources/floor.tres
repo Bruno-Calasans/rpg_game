@@ -85,6 +85,7 @@ texture_region_size = Vector2i(32, 32)
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 12
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "floor_auto_tile"
 terrain_set_0/terrain_0/color = Color(0.995554, 0.935021, 0.942442, 1)

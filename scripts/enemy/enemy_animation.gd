@@ -2,7 +2,7 @@ extends AnimationPlayer
 class_name EnemyAnimation
 
 @onready var enemy: Enemy = get_parent()
-@onready var texture: Sprite2D = get_node('Texture')
+@onready var texture: Sprite2D = get_node('../Texture')
 @onready var floor_raycast: RayCast2D = get_node('../FloorRayCast')
 @export var default_floor_raycast_x_position = 35
 

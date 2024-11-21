@@ -143,7 +143,7 @@ func _physics_process(delta: float) -> void:
 		print('Health after: ', current_health)
 		
 
-# determines the damage and invencibility time from an enemy
+# determines the damage and invencibility time after being attack by an enemy
 func on_collision_area_area_entered(area: Area2D) -> void:
 	
 	# if it's a enemy attack

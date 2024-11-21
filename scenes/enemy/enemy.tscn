@@ -5,6 +5,8 @@
 [ext_resource type="Script" path="res://scripts/player/detection_area.gd" id="2_8prk1"]
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_rr20k")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
@@ -16,15 +18,21 @@ script = ExtResource("2_3gmt7")
 
 [node name="FloorRayCast" type="RayCast2D" parent="."]
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="EnemyAttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
-[node name="Collision" type="CollisionShape2D" parent="AttackArea"]
+[node name="Collision" type="CollisionShape2D" parent="EnemyAttackArea"]
 
 [node name="CollisionArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="CollisionArea"]
 
 [node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("2_8prk1")
 
 [node name="Collision" type="CollisionShape2D" parent="DetectionArea"]
