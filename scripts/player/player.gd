@@ -104,17 +104,19 @@ func attack():
 		can_move = false
 		
 func crouch():
-	var can_crouch = is_on_floor() and not parrying and not crouching
+	var can_crouch = is_on_floor() and not crouching and not parrying 
 	var can_stand = is_on_floor() and crouching and not parrying
 	
 	# crouch
 	if Input.is_action_pressed('crouch') and can_crouch :
+		print('Player is crouching')
 		crouching = true
 		can_move = false
 		can_crouch_now = true
 	
 	# standing
 	if Input.is_action_just_released('crouch') and can_stand:
+		print('Player is standing')
 		crouching = false
 		can_move = true
 		can_crouch_now = false

@@ -7,7 +7,7 @@
 [ext_resource type="TileSet" uid="uid://bbfdq6fp81xxo" path="res://resources/grass.tres" id="5_vee01"]
 [ext_resource type="PackedScene" uid="uid://5d133lq3wd2m" path="res://scenes/env/background.tscn" id="6_ukfhb"]
 [ext_resource type="PackedScene" uid="uid://brq6323tjx1xw" path="res://scenes/env/mask.tscn" id="7_51g60"]
-[ext_resource type="Script" path="res://scripts/env/day_time_cycle.gd" id="8_eifru"]
+[ext_resource type="Script" path="res://scripts/env/level.gd" id="8_eifru"]
 [ext_resource type="PackedScene" uid="uid://cunbt26748t6p" path="res://scenes/player/player.tscn" id="9_iycvf"]
 
 [sub_resource type="Environment" id="Environment_gro8d"]
@@ -20,7 +20,7 @@ glow_blend_mode = 0
 [node name="Level" type="Node2D"]
 texture_filter = 1
 script = ExtResource("8_eifru")
-hour = 22
+hour = 9
 
 [node name="LevelDesign" type="Node2D" parent="."]
 

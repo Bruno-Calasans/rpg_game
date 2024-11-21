@@ -1,6 +1,8 @@
 extends AnimationPlayer
 class_name PlayerAnimation
 
+signal game_over
+
 @export_category('Objects')
 @onready var player: Player = get_node('..')
 @onready var texture: Sprite2D = get_node('../Texture')
@@ -14,7 +16,6 @@ func animate(direction: Vector2):
 	# this actions have priority over the actions below it
 	if player.being_hit or player.dead and not player.game_over:
 		hit_behavior()
-		print('Hit behavior')
 
 	elif player.is_next_wall():
 		wall_slide_behavior()
@@ -132,10 +133,13 @@ func _on_animation_finished(anim_name: StringName) -> void:
 			# player returns to previous state after being hit
 			if player.parrying:
 				play('parry')
+				print('Player continues to parry')
 			
 			if player.crouching:
 				play('crouch')
+				print('Player continues to crouching')
 		"death":
 			# ends game and finish player physics
 			player.game_over = true
+			game_over.emit()
 			
