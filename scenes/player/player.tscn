@@ -436,6 +436,7 @@ vframes = 11
 frame = 1
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1.5, 12)
 shape = SubResource("RectangleShape2D_xocqa")
 one_way_collision_margin = 0.0
@@ -480,4 +481,16 @@ autoplay = "pulse"
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("7_knuei")
 
+[node name="InvencibilityTimer" type="Timer" parent="Stats"]
+one_shot = true
+
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="CollisionArea"]
+position = Vector2(-1.5, 12)
+shape = SubResource("RectangleShape2D_xocqa")
+one_way_collision_margin = 0.0
+
 [connection signal="animation_finished" from="Animation" to="Animation" method="_on_animation_finished"]
+[connection signal="timeout" from="Stats/InvencibilityTimer" to="Stats" method="on_invencibility_timeout"]
+[connection signal="area_entered" from="CollisionArea" to="Stats" method="on_collision_area_area_entered"]

@@ -6,7 +6,7 @@ signal game_over
 @export_category('Objects')
 @onready var player: Player = get_node('..')
 @onready var texture: Sprite2D = get_node('../Texture')
-@onready var attack_collision: CollisionShape2D = get_node('../Collision')
+@onready var attack_collision: Area2D = get_node('../AttackArea')
 
 var attack_suffix = '_left'
 
@@ -106,9 +106,9 @@ func wall_slide_behavior():
 	
 func hit_behavior():
 	player.set_physics_process(false)
-	# disable collision
-	#attack_collision.set_deferred('disabled', false)
 	if player.being_hit:
+		# disable attack collision
+		attack_collision.set_deferred('disabled', false)
 		play('hit')
 	
 	if player.dead:
