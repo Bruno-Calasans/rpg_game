@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2dbulneg15g0"]
+[gd_scene load_steps=15 format=3 uid="uid://d2dbulneg15g0"]
 
 [ext_resource type="PackedScene" uid="uid://o065ta0ghwgy" path="res://scenes/enemy/enemy.tscn" id="1_0krou"]
 [ext_resource type="Script" path="res://scripts/enemy/whale_animation.gd" id="2_7qfoq"]
 [ext_resource type="Texture2D" uid="uid://buwpffwie0knk" path="res://assets/enemy/whale/run.png" id="3_36xkx"]
 [ext_resource type="Texture2D" uid="uid://cgnjrbdau2hh2" path="res://assets/enemy/whale/idle.png" id="4_ca6pl"]
+[ext_resource type="Texture2D" uid="uid://db0i4yqp8ngn4" path="res://assets/enemy/whale/hit.png" id="4_l58sj"]
+[ext_resource type="Texture2D" uid="uid://bfc48n65l4eft" path="res://assets/enemy/whale/dead.png" id="5_ykari"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41lav"]
 size = Vector2(63, 40)
@@ -167,9 +169,117 @@ tracks/3/keys = {
 "values": [14]
 }
 
+[sub_resource type="Animation" id="Animation_18y22"]
+resource_name = "hit"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_l58sj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Animation:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Texture:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_p5ghw"]
+resource_name = "death"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_ykari")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Animation:speed_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oruut"]
 _data = {
 "RESET": SubResource("Animation_rg6m8"),
+"death": SubResource("Animation_p5ghw"),
+"hit": SubResource("Animation_18y22"),
 "idle": SubResource("Animation_jh68i"),
 "run": SubResource("Animation_gmbq3")
 }
@@ -177,7 +287,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvs2s"]
 size = Vector2(300, 46)
 
-[node name="Whally" instance=ExtResource("1_0krou")]
+[node name="Whale" instance=ExtResource("1_0krou")]
 aproximity_threshold = 15
 enemy_gravity = 350
 enemy_speed = 60
