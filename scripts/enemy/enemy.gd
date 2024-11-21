@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Enemy
 
+@export_category('Objects')
 @export var player_ref: Player = null
-@onready var texture: Sprite2D = get_node('Texture')
 @onready var animation: AnimationPlayer = get_node('AnimationPlayer')
 @onready var floor_raycast: RayCast2D = get_node('FloorRayCast')
 @export var default_floor_raycast_x_position = 35
@@ -18,6 +18,9 @@ class_name Enemy
 func stop_enemy():
 	velocity.x = 0
 
+func is_moving():
+	return velocity.x != 0
+
 func get_player_enemy_distance():
 	if player_ref == null: return Vector2()
 	return player_ref.global_position - global_position
@@ -25,7 +28,7 @@ func get_player_enemy_distance():
 func floor_collision():
 	return floor_raycast.is_colliding()
 
-func move():
+func horizontal_movement():
 	if player_ref == null: stop_enemy()
 	
 	var distance = get_player_enemy_distance()
@@ -47,27 +50,11 @@ func move():
 func gravity(delta: float):
 	velocity.y = delta * enemy_gravity
 
-func verify_direction():
-	var direction = sign(get_player_enemy_distance().x)
-	
-	# player is on the right
-	# by default, the enemy is looking at the left
-	if direction > 0:
-		# turn right
-		texture.flip_h = true 
-		# deslocate the raycast position to the right
-		floor_raycast.position.x = default_floor_raycast_x_position
-	
-	# player is on the left
-	if direction < 0:
-		# turn left
-		texture.flip_h = false 
-		# deslocate the raycast position to the left
-		floor_raycast.position.x = -default_floor_raycast_x_position
-		
+func animate():
+	animation.animate(velocity)
 
 func _physics_process(delta: float) -> void:
-	move()
+	horizontal_movement()
 	gravity(delta)
-	verify_direction()
+	animate()
 	move_and_slide()
