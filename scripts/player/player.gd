@@ -5,6 +5,11 @@ class_name Player
 @onready var animation: AnimationPlayer = get_node("Animation")
 @onready var wall_ray: RayCast2D = get_node('WallRay')
 
+@export_category('Damage')
+@export var dead = false
+@export var being_hit = false
+@export var game_over = false
+
 @export_category('Horizontal Movement')
 @export var speed = 100 # how much the x value is going increase (left or right)
 

@@ -1,17 +1,23 @@
 extends AnimationPlayer
 class_name PlayerAnimation
 
-@onready var texture: Sprite2D = get_node('../Texture')
+@export_category('Objects')
 @onready var player: Player = get_node('..')
+@onready var texture: Sprite2D = get_node('../Texture')
+@onready var attack_collision: CollisionShape2D = get_node('../Collision')
+
 var attack_suffix = '_left'
 
 func animate(direction: Vector2):
 	verify_direction(direction)
 	
 	# this actions have priority over the actions below it
-	if player.is_next_wall():
+	if player.being_hit or player.dead and not player.game_over:
+		hit_behavior()
+		print('Hit behavior')
+
+	elif player.is_next_wall():
 		wall_slide_behavior()
-		print('here')
 		
 	elif player.attacking or player.crouching or player.parrying:
 		action_behavior()
@@ -97,6 +103,16 @@ func wall_slide_behavior():
 	if player.is_next_wall(): 
 		play('wall_slide')
 	
+func hit_behavior():
+	player.set_physics_process(false)
+	# disable collision
+	#attack_collision.set_deferred('disabled', false)
+	if player.being_hit:
+		play('hit')
+	
+	if player.dead:
+		play('death')
+		
 func _on_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		"landing":
@@ -109,4 +125,17 @@ func _on_animation_finished(anim_name: StringName) -> void:
 		"attack_left":
 			player.attacking = false
 			player.can_move = true
-		
+		"hit":
+			player.being_hit = false
+			player.set_physics_process(true)
+	
+			# player returns to previous state after being hit
+			if player.parrying:
+				play('parry')
+			
+			if player.crouching:
+				play('crouch')
+		"death":
+			# ends game and finish player physics
+			player.game_over = true
+			
