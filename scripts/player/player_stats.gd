@@ -97,6 +97,9 @@ func level_up():
 	update_max_defense()
 	reset_health_mana()
 
+func get_attack():
+	return base_attack + bonus_attack
+
 func increase_health(value: int):
 	current_health += value
 	# it limits max health
@@ -134,6 +137,7 @@ func verify_parry(damage: int):
 		taken_damage = abs(damage - max_defense)
 	
 	return taken_damage
+	
 		
 func _physics_process(delta: float) -> void:
 	# test player taking damage
@@ -142,7 +146,6 @@ func _physics_process(delta: float) -> void:
 		decrease_health(5)
 		print('Health after: ', current_health)
 		
-
 # determines the damage and invencibility time after being attack by an enemy
 func on_collision_area_area_entered(area: Area2D) -> void:
 	

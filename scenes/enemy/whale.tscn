@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2dbulneg15g0"]
+[gd_scene load_steps=16 format=3 uid="uid://d2dbulneg15g0"]
 
 [ext_resource type="PackedScene" uid="uid://o065ta0ghwgy" path="res://scenes/enemy/enemy.tscn" id="1_0krou"]
 [ext_resource type="Script" path="res://scripts/enemy/whale_animation.gd" id="2_7qfoq"]
@@ -284,6 +284,9 @@ _data = {
 "run": SubResource("Animation_gmbq3")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8a8o"]
+size = Vector2(66, 36)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvs2s"]
 size = Vector2(300, 46)
 
@@ -293,7 +296,6 @@ enemy_gravity = 350
 enemy_speed = 60
 
 [node name="Collision" parent="." index="0"]
-visible = false
 position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_41lav")
 
@@ -314,8 +316,9 @@ script = ExtResource("2_7qfoq")
 position = Vector2(-35, 0)
 target_position = Vector2(0, 30)
 
-[node name="CollisionArea" parent="." index="5"]
-collision_mask = 4
+[node name="Collision" parent="EnemyCollisionArea" index="0"]
+position = Vector2(1, 5)
+shape = SubResource("RectangleShape2D_h8a8o")
 
 [node name="Collision" parent="DetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_tvs2s")

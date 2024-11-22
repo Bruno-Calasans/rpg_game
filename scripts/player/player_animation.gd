@@ -6,7 +6,7 @@ signal game_over
 @export_category('Objects')
 @onready var player: Player = get_node('..')
 @onready var texture: Sprite2D = get_node('../Texture')
-@onready var attack_collision: Area2D = get_node('../AttackArea')
+@onready var attack_collision: Area2D = get_node('../PlayerAttackArea')
 
 var attack_suffix = '_left'
 

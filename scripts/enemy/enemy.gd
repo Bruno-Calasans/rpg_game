@@ -8,8 +8,11 @@ class_name Enemy
 @export var default_floor_raycast_x_position = 35
 
 @export_category('Attack Variables')
+@export var attacking = false
 @export var can_attack = false
 @export var aproximity_threshold = 1
+@export var dead = false
+@export var being_hit = false
 
 @export_category('Horizontal Move')
 @export var enemy_gravity = 75
@@ -63,4 +66,3 @@ func _physics_process(delta: float) -> void:
 	gravity(delta)
 	animate()
 	move_and_slide()
-	print(player_ref)
