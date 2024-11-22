@@ -7,7 +7,6 @@ class_name EnemyAnimation
 @export var default_floor_raycast_x_position = 35
 
 func animate(velocity: Vector2):
-	verify_direction(velocity)
 	pass
 	
 func verify_direction(velocity: Vector2):
@@ -27,12 +26,16 @@ func verify_direction(velocity: Vector2):
 		texture.flip_h = false 
 		# deslocate the raycast position to the left
 		floor_raycast.position.x = -default_floor_raycast_x_position
-	
+		
+func damage_behavior():
+	pass
+			
 func horizontal_behavior(velocity: Vector2):
 	pass
 	
 func attack_behavior(velocity: Vector2):
 	pass
 	
-func on_current_animation_changed(name: String) -> void:
+func on_current_animation_changed(anim_name: String) -> void:
 	pass
+			

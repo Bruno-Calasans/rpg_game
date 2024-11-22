@@ -6,9 +6,9 @@ class_name Enemy
 @onready var animation: AnimationPlayer = get_node('Animation')
 @onready var floor_raycast: RayCast2D = get_node('FloorRayCast')
 @export var default_floor_raycast_x_position = 35
+@export var enemy_variant = 'Default'
 
 @export_category('Attack Variables')
-@export var attacking = false
 @export var can_attack = false
 @export var aproximity_threshold = 1
 @export var dead = false
@@ -38,6 +38,7 @@ func horizontal_movement():
 		
 	var distance = get_player_enemy_distance()
 	var direction = sign(distance.x)
+	print('Enemy direction: ' + str(direction))
 	
 	# if player is right next to enemy
 	if abs(distance.x) <= aproximity_threshold:
@@ -60,6 +61,9 @@ func gravity(delta: float):
 
 func animate():
 	animation.animate(velocity)
+
+func kill_enemy():
+	print('Enemy is dead')
 
 func _physics_process(delta: float) -> void:
 	horizontal_movement()
