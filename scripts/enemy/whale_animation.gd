@@ -6,6 +6,8 @@ func animate(velocity: Vector2):
 
 	if enemy.being_hit or enemy.dead:
 		damage_behavior()
+	elif enemy.can_attack:
+		attack_behavior()
 	else:
 		horizontal_behavior(velocity)
 	
@@ -26,12 +28,17 @@ func damage_behavior():
 	elif enemy.being_hit:
 		play('hit')
 		enemy.can_attack = false
-			
-func attack_behavior(velocity: Vector2):
-	pass
 	
-func on_current_animation_changed(anim_name: String) -> void:
+func attack_behavior():
+	if enemy.can_attack:
+		play('attack')
+		
+	
+func on_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
+		"attack":
+			enemy.can_attack = false
+			enemy.being_hit = false
 		"hit":
 			enemy.set_physics_process(true)
 			enemy.can_attack = true
@@ -41,5 +48,6 @@ func on_current_animation_changed(anim_name: String) -> void:
 			play('kill')
 			
 		"kill":
+			# clear memory
 			enemy.queue_free()
 			

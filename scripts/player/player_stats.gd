@@ -4,8 +4,6 @@ class_name PlayerStats
 @export_category('Objects')
 @onready var player_animation: PlayerAnimation = get_node('../Animation')
 @onready var player: Player = get_node('..')
-@onready var collision_area: Area2D = get_node('../CollisionArea')
-@onready var invencibility_timer: Timer = get_node('InvencibilityTimer')
 
 @export_category('Base Player Stats ')
 @export var base_health = 20
@@ -146,16 +144,3 @@ func _physics_process(delta: float) -> void:
 		decrease_health(5)
 		print('Health after: ', current_health)
 		
-# determines the damage and invencibility time after being attack by an enemy
-func on_collision_area_area_entered(area: Area2D) -> void:
-	
-	# if it's a enemy attack
-	if area.name == 'EnemyAttackArea':
-		decrease_health(area.damage or 1)
-		# it stops collision
-		collision_area.set_deferred('monitoring', false)
-		invencibility_timer.start(area.attack_rate)
-	
-# active collision after invencibility timer ends
-func on_invencibility_timeout() -> void:
-	collision_area.set_deferred('monitoring', true)

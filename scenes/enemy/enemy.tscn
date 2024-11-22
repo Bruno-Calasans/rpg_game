@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_rr20k"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_animation.gd" id="2_3gmt7"]
-[ext_resource type="Script" path="res://scripts/player/detection_area.gd" id="2_8prk1"]
+[ext_resource type="Script" path="res://scripts/player/enemy_detection_area.gd" id="2_8prk1"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_collision_area.gd" id="3_qw4ow"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_stats.gd" id="5_ld5ei"]
 
@@ -22,7 +22,7 @@ script = ExtResource("2_3gmt7")
 [node name="FloorRayCast" type="RayCast2D" parent="."]
 
 [node name="EnemyAttackArea" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 8
 collision_mask = 4
 
 [node name="Collision" type="CollisionShape2D" parent="EnemyAttackArea"]
@@ -46,7 +46,7 @@ script = ExtResource("2_8prk1")
 [node name="EnemyStats" type="Node2D" parent="."]
 script = ExtResource("5_ld5ei")
 
-[connection signal="current_animation_changed" from="Animation" to="Animation" method="on_current_animation_changed"]
+[connection signal="animation_finished" from="Animation" to="Animation" method="on_animation_finished"]
 [connection signal="area_entered" from="EnemyCollisionArea" to="EnemyCollisionArea" method="on_area_entered"]
 [connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="on_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="on_detection_area_body_exited"]

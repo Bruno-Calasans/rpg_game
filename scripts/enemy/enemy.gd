@@ -38,7 +38,7 @@ func horizontal_movement():
 		
 	var distance = get_player_enemy_distance()
 	var direction = sign(distance.x)
-	print('Enemy direction: ' + str(direction))
+	var can_move = floor_collision() and not can_attack
 	
 	# if player is right next to enemy
 	if abs(distance.x) <= aproximity_threshold:
@@ -47,7 +47,7 @@ func horizontal_movement():
 		print('Enemy attacks')
 	
 	# enemy goes to player
-	elif floor_collision() and not can_attack:
+	elif can_move:
 		velocity.x = direction * enemy_speed
 		print('Enemy moves')
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cunbt26748t6p"]
+[gd_scene load_steps=26 format=3 uid="uid://cunbt26748t6p"]
 
 [ext_resource type="Texture2D" uid="uid://c3wea8v8nemk6" path="res://assets/player/char_blue.png" id="1_2vdlw"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_eqfwv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Animation" uid="uid://bbx4bf4ymutrc" path="res://scenes/player/animations/run.res" id="4_gx4sr"]
 [ext_resource type="Texture2D" uid="uid://b8cnobvecp7sp" path="res://assets/effect/light.png" id="6_vj1o8"]
 [ext_resource type="Script" path="res://scripts/player/player_stats.gd" id="7_knuei"]
+[ext_resource type="Script" path="res://scenes/player/player_collision_area.gd" id="8_j7wqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xocqa"]
 size = Vector2(15, 32)
@@ -473,11 +474,8 @@ libraries = {
 }
 autoplay = "pulse"
 
-[node name="Stats" type="Node" parent="."]
+[node name="PlayerStats" type="Node" parent="."]
 script = ExtResource("7_knuei")
-
-[node name="InvencibilityTimer" type="Timer" parent="Stats"]
-one_shot = true
 
 [node name="PlayerAttackArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -488,15 +486,19 @@ position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_138bu")
 disabled = true
 
-[node name="CollisionArea" type="Area2D" parent="."]
+[node name="PlayerCollisionArea" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 8
+script = ExtResource("8_j7wqv")
 
-[node name="Collision" type="CollisionShape2D" parent="CollisionArea"]
+[node name="Collision" type="CollisionShape2D" parent="PlayerCollisionArea"]
 position = Vector2(-1.5, 12)
 shape = SubResource("RectangleShape2D_xocqa")
 one_way_collision_margin = 0.0
 
+[node name="InvencibilityTimer" type="Timer" parent="PlayerCollisionArea"]
+one_shot = true
+
 [connection signal="animation_finished" from="Animation" to="Animation" method="_on_animation_finished"]
-[connection signal="timeout" from="Stats/InvencibilityTimer" to="Stats" method="on_invencibility_timeout"]
-[connection signal="area_entered" from="CollisionArea" to="Stats" method="on_collision_area_area_entered"]
+[connection signal="area_entered" from="PlayerCollisionArea" to="PlayerCollisionArea" method="on_collision_area_entered"]
+[connection signal="timeout" from="PlayerCollisionArea/InvencibilityTimer" to="PlayerCollisionArea" method="on_invencibility_timer_timeout"]

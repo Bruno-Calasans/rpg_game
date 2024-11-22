@@ -33,9 +33,5 @@ func damage_behavior():
 func horizontal_behavior(velocity: Vector2):
 	pass
 	
-func attack_behavior(velocity: Vector2):
-	pass
-	
-func on_current_animation_changed(anim_name: String) -> void:
-	pass
-			
+func on_animation_finished(anim_name: StringName) -> void:
+	pass # Replace with function body.
