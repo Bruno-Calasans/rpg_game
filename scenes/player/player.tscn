@@ -429,6 +429,7 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_eqfwv")
+speed = 150
 player_gravity = 150
 
 [node name="Texture" type="Sprite2D" parent="."]

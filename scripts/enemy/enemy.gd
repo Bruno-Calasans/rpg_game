@@ -7,6 +7,7 @@ class_name Enemy
 @onready var floor_raycast: RayCast2D = get_node('FloorRayCast')
 @export var default_floor_raycast_x_position = 35
 @export var enemy_variant = 'Default'
+@export var drop_list: Dictionary = {}
 
 @export_category('Attack Variables')
 @export var can_attack = false

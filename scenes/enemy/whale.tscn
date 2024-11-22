@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2dbulneg15g0"]
+[gd_scene load_steps=21 format=3 uid="uid://d2dbulneg15g0"]
 
 [ext_resource type="PackedScene" uid="uid://o065ta0ghwgy" path="res://scenes/enemy/enemy.tscn" id="1_0krou"]
 [ext_resource type="Script" path="res://scripts/enemy/whale_animation.gd" id="2_7qfoq"]
+[ext_resource type="Script" path="res://scripts/enemy/whale/whale.gd" id="2_r6h04"]
 [ext_resource type="Texture2D" uid="uid://buwpffwie0knk" path="res://assets/enemy/whale/run.png" id="3_36xkx"]
 [ext_resource type="Texture2D" uid="uid://cgnjrbdau2hh2" path="res://assets/enemy/whale/idle.png" id="4_ca6pl"]
 [ext_resource type="Texture2D" uid="uid://db0i4yqp8ngn4" path="res://assets/enemy/whale/hit.png" id="4_l58sj"]
@@ -450,9 +451,7 @@ size = Vector2(66, 36)
 size = Vector2(300, 46)
 
 [node name="Whale" instance=ExtResource("1_0krou")]
-aproximity_threshold = 15
-enemy_gravity = 350
-enemy_speed = 60
+script = ExtResource("2_r6h04")
 
 [node name="Collision" parent="." index="0"]
 position = Vector2(0.5, 1)
