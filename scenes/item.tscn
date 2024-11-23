@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ck80um47updrh"]
+[gd_scene load_steps=9 format=3 uid="uid://ck80um47updrh"]
 
 [ext_resource type="Script" path="res://scenes/enemy/item.gd" id="1_tbxip"]
 [ext_resource type="Script" path="res://scenes/item_info.gd" id="2_wa5fm"]
 [ext_resource type="Texture2D" uid="uid://b8cnobvecp7sp" path="res://assets/effect/light.png" id="3_ehur1"]
 [ext_resource type="Texture2D" uid="uid://bith5wpuhcm3u" path="res://assets/item/consumable/health_potion.png" id="3_j0vt1"]
 [ext_resource type="Script" path="res://scenes/item_interaction_area.gd" id="3_vf61j"]
+[ext_resource type="PackedScene" uid="uid://dcur43eb15p5t" path="res://scenes/effect/item_effect.tscn" id="6_c4uma"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x2hk8"]
 radius = 7.0
@@ -42,6 +43,9 @@ scale = Vector2(0.3, 0.3)
 color = Color(1.5, 0, 0, 0.579)
 texture = ExtResource("3_ehur1")
 texture_scale = 0.2
+
+[node name="ItemEffect" parent="." instance=ExtResource("6_c4uma")]
+visible = false
 
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="on_body_exited"]

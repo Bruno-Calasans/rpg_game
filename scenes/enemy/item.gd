@@ -28,6 +28,8 @@ func on_screen_exited() -> void:
 func interaction():
 	if Input.is_action_just_pressed('interact') and player_ref != null:
 		print('Player gets a item')
+		var item_effect: ItemEffect = get_node('ItemEffect')
+		item_effect.apply_interaction_effect()
 		queue_free()
 		
 func _process(delta: float) -> void:

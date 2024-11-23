@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cunbt26748t6p"]
+[gd_scene load_steps=28 format=3 uid="uid://cunbt26748t6p"]
 
 [ext_resource type="Texture2D" uid="uid://c3wea8v8nemk6" path="res://assets/player/char_blue.png" id="1_2vdlw"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_eqfwv"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://b8cnobvecp7sp" path="res://assets/effect/light.png" id="6_vj1o8"]
 [ext_resource type="Script" path="res://scripts/player/player_stats.gd" id="7_knuei"]
 [ext_resource type="Script" path="res://scenes/player/player_collision_area.gd" id="8_j7wqv"]
+[ext_resource type="Script" path="res://scenes/player/player_effect.gd" id="9_1874p"]
+[ext_resource type="PackedScene" uid="uid://dypnf2oig3qfu" path="res://scenes/effect/player_effect.tscn" id="9_pxu2f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xocqa"]
 size = Vector2(15, 32)
@@ -293,6 +295,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [24, 25, 26, 27, 28, 29, 30, 31, 32]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerEffect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [Vector2(0, 34)],
+"method": &"apply_jump_effect"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_r5ven"]
 resource_name = "landing"
@@ -309,6 +325,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [38, 39]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerEffect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [Vector2(0, 20)],
+"method": &"apply_landing_effect"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_srfwr"]
@@ -499,6 +529,11 @@ one_way_collision_margin = 0.0
 
 [node name="InvencibilityTimer" type="Timer" parent="PlayerCollisionArea"]
 one_shot = true
+
+[node name="PlayerEffect" parent="." instance=ExtResource("9_pxu2f")]
+visible = false
+position = Vector2(0, 18)
+script = ExtResource("9_1874p")
 
 [connection signal="animation_finished" from="Animation" to="Animation" method="_on_animation_finished"]
 [connection signal="area_entered" from="PlayerCollisionArea" to="PlayerCollisionArea" method="on_collision_area_entered"]

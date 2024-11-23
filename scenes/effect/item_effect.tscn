@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcur43eb15p5t"]
+
+[ext_resource type="PackedScene" uid="uid://33gbjf2kt8j3" path="res://scenes/effect/effect.tscn" id="1_rs7iu"]
+[ext_resource type="Texture2D" uid="uid://3len6vd4y2ag" path="res://assets/effect/general_effect/collect_item_effect.png" id="2_dckp0"]
+[ext_resource type="Script" path="res://scripts/item/item_effect.gd" id="3_clbkf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6wno"]
+atlas = ExtResource("2_dckp0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3iil"]
+atlas = ExtResource("2_dckp0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55itd"]
+atlas = ExtResource("2_dckp0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qb11u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6wno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3iil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55itd")
+}],
+"loop": false,
+"name": &"interaction",
+"speed": 10.0
+}]
+
+[node name="ItemEffect" instance=ExtResource("1_rs7iu")]
+sprite_frames = SubResource("SpriteFrames_qb11u")
+animation = &"interaction"
+script = ExtResource("3_clbkf")
