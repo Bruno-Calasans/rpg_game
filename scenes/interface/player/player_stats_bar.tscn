@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg4ddr20nubq0"]
+
+[ext_resource type="Texture2D" uid="uid://dmmdmkupkofkj" path="res://assets/interface/stats/bar/health_bar_background.png" id="1_gjbo1"]
+[ext_resource type="Texture2D" uid="uid://bwfr6w8b3oc3a" path="res://assets/interface/stats/bar/health_bar.png" id="2_2b83e"]
+[ext_resource type="Texture2D" uid="uid://o2obgjfcjby" path="res://assets/interface/stats/bar/mana_bar_background.png" id="3_jg0ik"]
+[ext_resource type="Texture2D" uid="uid://d4uhci7p1dpp" path="res://assets/interface/stats/bar/exp_bar_background.png" id="4_7ke1j"]
+[ext_resource type="Texture2D" uid="uid://ctoibvjcax63l" path="res://assets/interface/stats/bar/mana_bar.png" id="4_dvvw6"]
+[ext_resource type="Texture2D" uid="uid://dgt1km2kybfs2" path="res://assets/interface/stats/bar/exp_bar.png" id="6_n8vkk"]
+
+[node name="PlayerStatsBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBarBackground" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 69.0
+offset_bottom = 22.0
+texture = ExtResource("1_gjbo1")
+
+[node name="HealthBar" type="TextureProgressBar" parent="HealthBarBackground"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 7.0
+offset_right = 60.0
+offset_bottom = 9.0
+value = 100.0
+texture_progress = ExtResource("2_2b83e")
+
+[node name="ManaBarBackground" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 25.0
+offset_right = 69.0
+offset_bottom = 40.0
+texture = ExtResource("3_jg0ik")
+
+[node name="ManaBar" type="TextureProgressBar" parent="ManaBarBackground"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 47.0
+offset_bottom = 8.0
+value = 100.0
+texture_progress = ExtResource("4_dvvw6")
+
+[node name="ExpBarBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -69.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 22.0
+grow_horizontal = 0
+texture = ExtResource("4_7ke1j")
+
+[node name="ExpBar" type="TextureProgressBar" parent="ExpBarBackground"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 7.0
+offset_right = 46.0
+offset_bottom = 9.0
+value = 100.0
+texture_progress = ExtResource("6_n8vkk")

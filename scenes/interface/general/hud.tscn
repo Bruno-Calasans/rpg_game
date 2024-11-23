@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://wp7e6wn2e88n"]
+
+[ext_resource type="PackedScene" uid="uid://bg4ddr20nubq0" path="res://scenes/interface/player/player_stats_bar.tscn" id="1_juj15"]
+
+[node name="Hud" type="CanvasLayer"]
+
+[node name="PlayerStatsBar" parent="." instance=ExtResource("1_juj15")]
