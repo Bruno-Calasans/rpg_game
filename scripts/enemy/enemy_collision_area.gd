@@ -10,4 +10,3 @@ func on_area_entered(area: Area2D) -> void:
 		var player_stats: PlayerStats = area.get_parent().get_node('PlayerStats')
 		enemy_stats.decrease_health(player_stats.get_attack())
 		print('after health:  ' + str(enemy_stats.current_health))
-		

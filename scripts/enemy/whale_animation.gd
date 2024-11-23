@@ -33,7 +33,6 @@ func attack_behavior():
 	if enemy.can_attack:
 		play('attack')
 		
-	
 func on_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		"attack":
@@ -48,6 +47,8 @@ func on_animation_finished(anim_name: StringName) -> void:
 			play('kill')
 			
 		"kill":
+			print('Enemy is dead')
+			enemy.kill_enemy()
 			# clear memory
-			enemy.queue_free()
+			#enemy.queue_free()
 			

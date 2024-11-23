@@ -1,7 +1,7 @@
 extends Node2D
 class_name EnemyStats
 
-@onready var enemy: Enemy = get_parent()
+@onready var enemy: CharacterBody2D = get_parent()
 @export var damage = 5
 @export var current_health = 10
 @export var max_health = 10

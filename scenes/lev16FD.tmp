@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://ddohlvb71vd62"]
+[gd_scene load_steps=14 format=4 uid="uid://ddohlvb71vd62"]
 
 [ext_resource type="TileSet" uid="uid://bu3bhgiisr7a3" path="res://resources/fences.tres" id="1_pr4i2"]
 [ext_resource type="TileSet" uid="uid://fiqqxqeni6sw" path="res://resources/decoration.tres" id="2_nwnhr"]
@@ -11,10 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://cunbt26748t6p" path="res://scenes/player/player.tscn" id="9_iycvf"]
 [ext_resource type="PackedScene" uid="uid://o065ta0ghwgy" path="res://scenes/enemy/enemy.tscn" id="10_7a1qa"]
 [ext_resource type="PackedScene" uid="uid://d2dbulneg15g0" path="res://scenes/enemy/whale.tscn" id="11_ih5fw"]
+[ext_resource type="PackedScene" uid="uid://ck80um47updrh" path="res://scenes/item.tscn" id="12_502s7"]
 
 [sub_resource type="Environment" id="Environment_gro8d"]
 background_mode = 3
 glow_enabled = true
+glow_intensity = 0.7
 glow_hdr_threshold = 1.5
 
 [node name="Level" type="Node2D"]
@@ -62,5 +64,9 @@ position = Vector2(261, 104)
 position = Vector2(19, 95)
 collision_mask = 3
 player_gravity = 350
+
+[node name="Item" parent="." instance=ExtResource("12_502s7")]
+visible = false
+position = Vector2(88, 102)
 
 [connection signal="child_entered_tree" from="." to="." method="on_child_entered_tree"]

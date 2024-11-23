@@ -1,13 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://d2dbulneg15g0"]
+[gd_scene load_steps=22 format=3 uid="uid://d2dbulneg15g0"]
 
 [ext_resource type="PackedScene" uid="uid://o065ta0ghwgy" path="res://scenes/enemy/enemy.tscn" id="1_0krou"]
 [ext_resource type="Script" path="res://scripts/enemy/whale_animation.gd" id="2_7qfoq"]
-[ext_resource type="Script" path="res://scripts/enemy/whale/whale.gd" id="2_r6h04"]
+[ext_resource type="Script" path="res://scenes/enemy/whale.gd" id="2_rqsai"]
 [ext_resource type="Texture2D" uid="uid://buwpffwie0knk" path="res://assets/enemy/whale/run.png" id="3_36xkx"]
 [ext_resource type="Texture2D" uid="uid://cgnjrbdau2hh2" path="res://assets/enemy/whale/idle.png" id="4_ca6pl"]
 [ext_resource type="Texture2D" uid="uid://db0i4yqp8ngn4" path="res://assets/enemy/whale/hit.png" id="4_l58sj"]
 [ext_resource type="Texture2D" uid="uid://bfc48n65l4eft" path="res://assets/enemy/whale/dead.png" id="5_ykari"]
 [ext_resource type="Texture2D" uid="uid://c2paohw03g1tf" path="res://assets/enemy/whale/attack.png" id="6_3n8vm"]
+[ext_resource type="Script" path="res://scenes/enemy/whale_drop_list.gd" id="8_gyvtt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41lav"]
 size = Vector2(63, 40)
@@ -442,16 +443,16 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yi6ss"]
-size = Vector2(63, 34)
+size = Vector2(63, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8a8o"]
-size = Vector2(66, 36)
+size = Vector2(63, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvs2s"]
 size = Vector2(300, 46)
 
 [node name="Whale" instance=ExtResource("1_0krou")]
-script = ExtResource("2_r6h04")
+script = ExtResource("2_rqsai")
 
 [node name="Collision" parent="." index="0"]
 position = Vector2(0.5, 1)
@@ -475,16 +476,19 @@ position = Vector2(-35, 0)
 target_position = Vector2(0, 30)
 
 [node name="Collision" parent="EnemyAttackArea" index="0"]
-position = Vector2(-0.5, 7)
+position = Vector2(-0.5, 5)
 shape = SubResource("RectangleShape2D_yi6ss")
 disabled = true
 debug_color = Color(0.0235294, 0.207843, 0.941176, 0.858824)
 
 [node name="Collision" parent="EnemyCollisionArea" index="0"]
-position = Vector2(1, 5)
+position = Vector2(-0.5, 5)
 shape = SubResource("RectangleShape2D_h8a8o")
 debug_color = Color(0.839216, 0.266667, 0.698039, 0.376471)
 
 [node name="Collision" parent="DetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_tvs2s")
 debug_color = Color(0.968627, 0.152941, 0.219608, 0.0745098)
+
+[node name="ItemDropList" parent="." index="8"]
+script = ExtResource("8_gyvtt")

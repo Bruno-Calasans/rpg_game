@@ -54,3 +54,5 @@ func day_cycle():
 func _physics_process(delta: float) -> void:
 	day_cycle()
 	
+func on_child_entered_tree(node: Node) -> void:
+	print(node.name)

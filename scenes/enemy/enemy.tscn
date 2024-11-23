@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://o065ta0ghwgy"]
+[gd_scene load_steps=7 format=3 uid="uid://o065ta0ghwgy"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_rr20k"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_animation.gd" id="2_3gmt7"]
 [ext_resource type="Script" path="res://scripts/player/enemy_detection_area.gd" id="2_8prk1"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_collision_area.gd" id="3_qw4ow"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_stats.gd" id="5_ld5ei"]
+[ext_resource type="Script" path="res://scenes/enemy/item_drop_list.gd" id="6_ayi4k"]
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
@@ -45,6 +46,9 @@ script = ExtResource("2_8prk1")
 
 [node name="EnemyStats" type="Node2D" parent="."]
 script = ExtResource("5_ld5ei")
+
+[node name="ItemDropList" type="Node2D" parent="."]
+script = ExtResource("6_ayi4k")
 
 [connection signal="animation_finished" from="Animation" to="Animation" method="on_animation_finished"]
 [connection signal="area_entered" from="EnemyCollisionArea" to="EnemyCollisionArea" method="on_area_entered"]

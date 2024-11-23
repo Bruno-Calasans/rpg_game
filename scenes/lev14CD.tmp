@@ -15,12 +15,13 @@
 [sub_resource type="Environment" id="Environment_gro8d"]
 background_mode = 3
 glow_enabled = true
-glow_hdr_threshold = 1.5
+glow_intensity = 1.5
+glow_blend_mode = 0
 
 [node name="Level" type="Node2D"]
 texture_filter = 1
 script = ExtResource("8_eifru")
-hour = 22
+hour = 9
 
 [node name="LevelDesign" type="Node2D" parent="."]
 
@@ -56,7 +57,7 @@ environment = SubResource("Environment_gro8d")
 visible = false
 
 [node name="Whale" parent="." instance=ExtResource("11_ih5fw")]
-position = Vector2(261, 104)
+position = Vector2(236, 98)
 
 [node name="Player" parent="." instance=ExtResource("9_iycvf")]
 position = Vector2(19, 95)

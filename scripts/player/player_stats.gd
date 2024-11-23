@@ -9,7 +9,7 @@ class_name PlayerStats
 @export var base_health = 20
 @export var base_mana = 10
 @export var base_defense = 1
-@export var base_attack = 1
+@export var base_attack = 50
 @export var base_magic_attack = 5
 
 @export_category('Bonus Player Stats ')

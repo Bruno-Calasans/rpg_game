@@ -5,9 +5,8 @@ class_name Enemy
 @export var player_ref: Player = null
 @onready var animation: AnimationPlayer = get_node('Animation')
 @onready var floor_raycast: RayCast2D = get_node('FloorRayCast')
-@export var default_floor_raycast_x_position = 35
 @export var enemy_variant = 'Default'
-@export var drop_list: Dictionary = {}
+@onready var drop_list: ItemDropList = get_node('ItemDropList')
 
 @export_category('Attack Variables')
 @export var can_attack = false
@@ -16,8 +15,9 @@ class_name Enemy
 @export var being_hit = false
 
 @export_category('Horizontal Move')
-@export var enemy_gravity = 75
-@export var enemy_speed = 1
+@export var enemy_gravity = 350
+@export var enemy_speed = 50
+@export var default_floor_raycast_x_position = 35
 
 func stop_enemy():
 	velocity.x = 0
@@ -62,9 +62,10 @@ func gravity(delta: float):
 
 func animate():
 	animation.animate(velocity)
-
+	
 func kill_enemy():
-	print('Enemy is dead')
+	drop_list.drop_item()
+	queue_free()
 
 func _physics_process(delta: float) -> void:
 	horizontal_movement()
