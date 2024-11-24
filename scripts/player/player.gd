@@ -13,6 +13,7 @@ class_name Player
 
 @export_category('Horizontal Movement')
 @export var speed = 100 # how much the x value is going increase (left or right)
+@export var direction = 1
 
 @export_category('Vertical Movement')
 @export var jump_speed = -175 # how much the y (up) value is going increase (when jumping)
@@ -36,6 +37,8 @@ class_name Player
 @export var wall_gravity = 115 # how much the y (down) value is going increase (when sliding on the wall)
 @export var wall_impulse_speed = 500 # how much the x value is going increase (left or right) after jumping
 @export var wall_jump_direction = 1 # 1 (right) or -1 (left)
+
+
 
 func horizontal_movement():
 	# if you press both right and left, the character doesn't move (-1 + 1)

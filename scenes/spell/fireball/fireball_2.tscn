@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://br24xhx3n680w"]
+
+[ext_resource type="PackedScene" uid="uid://bb7ld6rvudgl" path="res://scenes/spell/fireball/fireball_1.tscn" id="1_iwiue"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rtybp"]
+particles_animation = true
+particles_anim_h_frames = 45
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ehdb1"]
+load_path = "res://.godot/imported/fire_ball_2.png-4e5fb3ac195833336f23e2ba55f4bd90.ctex"
+
+[sub_resource type="Curve" id="Curve_to3d3"]
+_data = [Vector2(0.00378788, 0.480408), 0.0, 0.0, 0, 0, Vector2(0.492424, 0.25627), 0.0, 0.0, 0, 0, Vector2(0.996212, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Fireball2" instance=ExtResource("1_iwiue")]
+material = SubResource("CanvasItemMaterial_rtybp")
+texture = SubResource("CompressedTexture2D_ehdb1")
+scale_amount_curve = SubResource("Curve_to3d3")

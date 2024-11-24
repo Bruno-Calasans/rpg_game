@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb7ld6rvudgl"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c7nnu"]
+particles_animation = true
+particles_anim_h_frames = 45
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ywvhw"]
+load_path = "res://.godot/imported/fire_ball_1.png-28089fe026f3d221f35c7b98148fbe7e.ctex"
+
+[sub_resource type="Curve" id="Curve_gxl81"]
+_data = [Vector2(0.00378788, 0.480408), 0.0, 0.0, 0, 0, Vector2(0.492424, 0.25627), 0.0, 0.0, 0, 0, Vector2(0.996212, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Fireball1" type="CPUParticles2D"]
+material = SubResource("CanvasItemMaterial_c7nnu")
+lifetime = 2.0
+texture = SubResource("CompressedTexture2D_ywvhw")
+emission_shape = 3
+emission_rect_extents = Vector2(40, 0)
+spread = 0.0
+gravity = Vector2(0, 60)
+angle_min = -90.0
+angle_max = -90.0
+scale_amount_curve = SubResource("Curve_gxl81")
+anim_speed_min = 3.0
+anim_speed_max = 3.0

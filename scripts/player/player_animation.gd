@@ -50,6 +50,7 @@ func verify_direction(direction: Vector2):
 		texture.position = Vector2.ZERO
 		# it reverses raycast to right
 		player.wall_ray.target_position = Vector2(10, 0)
+		player.direction = 1
 		
 	# going to left
 	if direction.x < 0:
@@ -60,6 +61,7 @@ func verify_direction(direction: Vector2):
 		texture.position = Vector2(-5, 0)
 		# it reverses raycast to left
 		player.wall_ray.target_position = Vector2(-10, 0)
+		player.direction = -1
 		
 	# going to left
 	if direction.x < 0:
