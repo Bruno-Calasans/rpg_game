@@ -20,7 +20,7 @@ func animate(direction: Vector2):
 	elif player.is_next_wall():
 		wall_slide_behavior()
 		
-	elif player.attacking or player.crouching or player.parrying:
+	elif player.attacking or player.crouching or player.parrying or player.casting:
 		action_behavior()
 		
 	# player is falling or jumping
@@ -89,7 +89,11 @@ func vertical_behavior(direction: Vector2):
 		play('fall')
 
 func action_behavior():
-	if player.attacking:
+	
+	if player.casting:
+		play('magic_attack')
+	
+	elif player.attacking:
 		play('attack' + attack_suffix)
 			
 	elif player.crouching and player.can_crouch_now: 
@@ -125,6 +129,9 @@ func _on_animation_finished(anim_name: StringName) -> void:
 			player.can_move = true
 		"attack_left":
 			player.attacking = false
+			player.can_move = true
+		"magic_attack":
+			player.casting = false
 			player.can_move = true
 		"hit":
 			player.being_hit = false

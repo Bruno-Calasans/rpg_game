@@ -18,6 +18,7 @@ signal player_current_exp_updated(current_exp: int)
 @export var base_defense = 1
 @export var base_attack = 50
 @export var base_magic_attack = 5
+@export var mana_cost = 5
 
 @export_category('Bonus Player Stats ')
 @export var bonus_health = 0
@@ -120,7 +121,6 @@ func level_up():
 	update_max_mana()
 	update_max_defense()
 	reset_health_mana()
-	update_max_exp()
 	update_max_exp()
 	await get_tree().create_timer(0.2).timeout
 	player_current_exp_updated.emit(current_experience)

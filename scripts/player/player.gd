@@ -4,6 +4,7 @@ class_name Player
 @export_category('Objects')
 @onready var animation: AnimationPlayer = get_node("Animation")
 @onready var wall_ray: RayCast2D = get_node('WallRay')
+@onready var player_stats: PlayerStats = get_node('PlayerStats')
 
 @export_category('Damage')
 @export var dead = false
@@ -21,6 +22,7 @@ class_name Player
 
 @export_category('Main Actions')
 @export var attacking = false # if the player is attacking
+@export var casting = false # if the player is cast some spell
 @export var crouching = false # if the player is crouching
 @export var parrying = false # if the player is defending (using the shield)
 @export var can_move = true # if the player can move after it peforms some action
@@ -98,10 +100,17 @@ func is_next_wall():
 	return false
 		
 func attack():
-	var can_attack = not attacking and not crouching and not parrying
-	if Input.is_action_just_pressed('attack') and can_attack and is_on_floor():
+	var can_attack = not attacking and not casting and not crouching and not parrying and is_on_floor()
+	var can_magic_attack = player_stats.current_mana >= player_stats.mana_cost
+	
+	if Input.is_action_just_pressed('attack') and can_attack:
 		attacking = true
 		can_move = false
+	
+	elif Input.is_action_just_pressed('magic_attack') and can_attack and can_magic_attack:
+		casting = true
+		can_move = false
+		player_stats.decrease_mana(player_stats.mana_cost)
 		
 func crouch():
 	var can_crouch = is_on_floor() and not crouching and not parrying 
