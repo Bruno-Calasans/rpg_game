@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://l1gf2cmwd0l0"]
+
+[ext_resource type="Texture2D" uid="uid://pfoia7go8msa" path="res://assets/effect/explosion/explosion_3.png" id="1_2fgvk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jnsm4"]
+particles_animation = true
+particles_anim_h_frames = 60
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_cyhb5"]
+_data = [Vector2(0.03, 0.5), 0.0, 0.0, 0, 0, Vector2(0.5, 0.6), 0.0, 0.0, 0, 0, Vector2(1, 0.4), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Explosion3" type="CPUParticles2D"]
+material = SubResource("CanvasItemMaterial_jnsm4")
+emitting = false
+amount = 16
+lifetime = 2.5
+one_shot = true
+fixed_fps = 60
+texture = ExtResource("1_2fgvk")
+emission_shape = 3
+emission_rect_extents = Vector2(40, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_cyhb5")
+anim_speed_min = 3.0
+anim_speed_max = 3.0

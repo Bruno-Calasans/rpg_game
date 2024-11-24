@@ -1,17 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1bc4j60w150v"]
+[gd_scene load_steps=11 format=3 uid="uid://c1bc4j60w150v"]
 
 [ext_resource type="Script" path="res://scripts/spell/fireball_spell.gd" id="1_ngs25"]
 [ext_resource type="PackedScene" uid="uid://bb7ld6rvudgl" path="res://scenes/spell/fireball/fireball_1.tscn" id="1_wys4k"]
 [ext_resource type="PackedScene" uid="uid://br24xhx3n680w" path="res://scenes/spell/fireball/fireball_2.tscn" id="2_alfdj"]
 [ext_resource type="PackedScene" uid="uid://dwrlxqgtu8y15" path="res://scenes/spell/fireball/fireball_3.tscn" id="3_f5px5"]
 [ext_resource type="Texture2D" uid="uid://b8cnobvecp7sp" path="res://assets/effect/light.png" id="4_u0mlb"]
+[ext_resource type="PackedScene" uid="uid://l1gf2cmwd0l0" path="res://scenes/effect/general/explosion_3.tscn" id="5_w7un0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eg8s2"]
 size = Vector2(90, 20)
 
 [sub_resource type="Animation" id="Animation_pxabp"]
 resource_name = "light_strenght"
-length = 2.0
+length = 4.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -20,10 +21,10 @@ tracks/0/path = NodePath("SpellLight:texture_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.5),
+"times": PackedFloat32Array(0, 2, 3.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.01, 0.6, 0.1]
+"values": [0.01, 0.8, 0.1]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -32,10 +33,10 @@ tracks/1/path = NodePath("SpellLight:energy")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.5),
+"times": PackedFloat32Array(0, 2, 3.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 1.2, 0.0]
+"values": [0.5, 1.4, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -44,7 +45,7 @@ tracks/2/path = NodePath("SpellCollision:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 75)]
@@ -56,10 +57,70 @@ tracks/3/path = NodePath("SpellCollision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Explosion3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 75)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Explosion3:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Explosion3:scale_amount_max")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.6, 3.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Explosion3:scale_amount_min")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.6, 3.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SpellLight:color")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_rghbm"]
@@ -112,6 +173,66 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Explosion3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Explosion3:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Explosion3:scale_amount_max")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Explosion3:scale_amount_min")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SpellLight:color")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(2, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yvplh"]
 _data = {
@@ -120,6 +241,7 @@ _data = {
 }
 
 [node name="FireballSpell" type="Area2D"]
+collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_ngs25")
 
@@ -139,6 +261,9 @@ one_shot = true
 emitting = false
 one_shot = true
 
+[node name="Explosion3" parent="." instance=ExtResource("5_w7un0")]
+scale_amount_min = 0.1
+
 [node name="SpellAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_yvplh")
@@ -146,6 +271,7 @@ libraries = {
 autoplay = "light_strenght"
 
 [node name="SpellLight" type="PointLight2D" parent="."]
+color = Color(2, 1, 1, 1)
 energy = 0.0
 texture = ExtResource("4_u0mlb")
 texture_scale = 0.01
