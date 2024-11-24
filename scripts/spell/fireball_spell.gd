@@ -1,7 +1,7 @@
 extends Area2D
 class_name FireballSpell
 
-var spell_damage = 0
+@export var spell_damage = 10
 
 func _ready() -> void:
 	# starts the particles animation

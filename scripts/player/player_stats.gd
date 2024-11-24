@@ -16,7 +16,7 @@ signal player_current_exp_updated(current_exp: int)
 @export var base_health = 20
 @export var base_mana = 10
 @export var base_defense = 1
-@export var base_attack = 50
+@export var base_attack = 5
 @export var base_magic_attack = 5
 @export var mana_cost = 5
 

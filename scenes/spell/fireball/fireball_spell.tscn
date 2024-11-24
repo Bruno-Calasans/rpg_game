@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://l1gf2cmwd0l0" path="res://scenes/effect/general/explosion_3.tscn" id="5_w7un0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eg8s2"]
-size = Vector2(90, 20)
+size = Vector2(100, 20)
 
 [sub_resource type="Animation" id="Animation_pxabp"]
 resource_name = "light_strenght"
@@ -241,7 +241,7 @@ _data = {
 }
 
 [node name="FireballSpell" type="Area2D"]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 8
 script = ExtResource("1_ngs25")
 

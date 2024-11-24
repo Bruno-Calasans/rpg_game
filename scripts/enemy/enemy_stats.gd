@@ -3,8 +3,9 @@ class_name EnemyStats
 
 @onready var enemy: CharacterBody2D = get_parent()
 @export var damage = 5
-@export var current_health = 10
-@export var max_health = 10
+@export var current_health = 20
+@export var max_health = 20
+@export var invencibility_time = 1
 
 func decrease_health(value: int):
 	current_health -= value

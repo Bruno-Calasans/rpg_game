@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d2dbulneg15g0"]
+[gd_scene load_steps=23 format=3 uid="uid://d2dbulneg15g0"]
 
 [ext_resource type="PackedScene" uid="uid://o065ta0ghwgy" path="res://scenes/enemy/enemy.tscn" id="1_0krou"]
 [ext_resource type="Script" path="res://scripts/enemy/whale_animation.gd" id="2_7qfoq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bfc48n65l4eft" path="res://assets/enemy/whale/dead.png" id="5_ykari"]
 [ext_resource type="Texture2D" uid="uid://c2paohw03g1tf" path="res://assets/enemy/whale/attack.png" id="6_3n8vm"]
 [ext_resource type="Script" path="res://scenes/enemy/whale_drop_list.gd" id="8_gyvtt"]
+[ext_resource type="Script" path="res://scripts/enemy/whale/whale_stats.gd" id="9_u2hh6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41lav"]
 size = Vector2(63, 40)
@@ -489,6 +490,9 @@ debug_color = Color(0.839216, 0.266667, 0.698039, 0.376471)
 [node name="Collision" parent="DetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_tvs2s")
 debug_color = Color(0.968627, 0.152941, 0.219608, 0.0745098)
+
+[node name="EnemyStats" parent="." index="7"]
+script = ExtResource("9_u2hh6")
 
 [node name="ItemDropList" parent="." index="8"]
 script = ExtResource("8_gyvtt")
