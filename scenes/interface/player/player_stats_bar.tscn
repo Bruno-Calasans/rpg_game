@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bg4ddr20nubq0"]
+[gd_scene load_steps=8 format=3 uid="uid://bg4ddr20nubq0"]
 
+[ext_resource type="Script" path="res://scripts/interface/player/player_stats_bar.gd" id="1_doy3a"]
 [ext_resource type="Texture2D" uid="uid://dmmdmkupkofkj" path="res://assets/interface/stats/bar/health_bar_background.png" id="1_gjbo1"]
 [ext_resource type="Texture2D" uid="uid://bwfr6w8b3oc3a" path="res://assets/interface/stats/bar/health_bar.png" id="2_2b83e"]
 [ext_resource type="Texture2D" uid="uid://o2obgjfcjby" path="res://assets/interface/stats/bar/mana_bar_background.png" id="3_jg0ik"]
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_doy3a")
 
 [node name="HealthBarBackground" type="TextureRect" parent="."]
 layout_mode = 0
@@ -67,5 +69,5 @@ offset_left = 3.0
 offset_top = 7.0
 offset_right = 46.0
 offset_bottom = 9.0
-value = 100.0
+fill_mode = 1
 texture_progress = ExtResource("6_n8vkk")
