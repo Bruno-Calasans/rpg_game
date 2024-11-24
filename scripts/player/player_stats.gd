@@ -11,7 +11,6 @@ signal player_current_exp_updated(current_exp: int)
 @export_category('Objects')
 @onready var player_animation: PlayerAnimation = get_node('../Animation')
 @onready var player: Player = get_node('..')
-@onready var player_stats_bar: PlayerStatsBar = get_node('Hud/PlayerStatsBar')
 
 @export_category('Base Player Stats ')
 @export var base_health = 20
@@ -34,6 +33,7 @@ signal player_current_exp_updated(current_exp: int)
 @export var max_attack = 0
 @export var max_magic_attack = 0
 @export var max_level = 10
+@export var max_exp = 0
 
 @export_category('Current Player Stats ')
 @export var current_health = 0
@@ -41,7 +41,6 @@ signal player_current_exp_updated(current_exp: int)
 @export var current_level = 0
 @export var current_experience = 0
 @export var level_xp_requirements: Dictionary = {
-	'0': 0,
 	'1': 50,
 	'2': 150,
 	'3': 250,
@@ -60,22 +59,28 @@ func _ready() -> void:
 	update_max_defense()
 	reset_health_mana()
 	
-func get_max_exp():
-	return get_lvl_exp(current_level)
-	
+func update_max_exp():
+	max_exp = get_lvl_exp(current_level + 1)
+	player_max_exp_updated.emit(max_exp)
+		
 func get_lvl_exp(level: int):
-	if level > len(level_xp_requirements): return level_xp_requirements['0']
+	if level > len(level_xp_requirements): 
+		return level_xp_requirements[str(len(level_xp_requirements))]
+	if level < 0:
+		return level_xp_requirements['0']
 	return level_xp_requirements[str(level)]
 	
 func update_xp(exp: int):
 	current_experience += exp
-	
+	player_current_exp_updated.emit(current_experience)
+	 
 	for lvl in range(1, max_level):
 		var required_xp = get_lvl_exp(lvl)
 		if current_experience >= required_xp and current_level < max_level:
 			current_experience -= required_xp
 			current_level += 1
 			level_up()
+			
 		elif current_experience >= get_lvl_exp(max_level):
 			current_experience = get_lvl_exp(max_level)
 			break
@@ -115,7 +120,11 @@ func level_up():
 	update_max_mana()
 	update_max_defense()
 	reset_health_mana()
-
+	update_max_exp()
+	update_max_exp()
+	await get_tree().create_timer(0.2).timeout
+	player_current_exp_updated.emit(current_experience)
+	
 func get_attack():
 	return base_attack + bonus_attack
 
@@ -157,8 +166,12 @@ func decrease_mana(mana: int):
 func verify_parry(damage: int):
 	var taken_damage = damage
 	
-	if player.parrying: 
-		taken_damage = abs(damage - max_defense)
+	if player.parrying:
+		# min damage taken
+		if  max_defense >= damage:
+			taken_damage = 1
+		else:
+			taken_damage = abs(max_defense - damage)
 	
 	return taken_damage
 		
@@ -169,3 +182,6 @@ func _physics_process(delta: float) -> void:
 		decrease_health(5)
 		print('Health after: ', current_health)
 		
+func on_enemy_is_dead(exp: int) -> void:
+	print('Earned xp = ', str(exp))
+	update_xp(exp)

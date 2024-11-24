@@ -67,6 +67,7 @@ player_gravity = 350
 [node name="Hud" parent="." instance=ExtResource("12_2hwg2")]
 
 [connection signal="child_entered_tree" from="." to="." method="on_child_entered_tree"]
+[connection signal="enemy_is_dead" from="Whale" to="Player/PlayerStats" method="on_enemy_is_dead"]
 [connection signal="player_current_exp_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_current_exp_updated"]
 [connection signal="player_current_health_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_current_health_updated"]
 [connection signal="player_current_mana_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_current_mana_updated"]

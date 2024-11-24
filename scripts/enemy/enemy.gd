@@ -1,12 +1,15 @@
 extends CharacterBody2D
 class_name Enemy
 
+signal enemy_is_dead(exp: int)
+
 @export_category('Objects')
 @export var player_ref: Player = null
 @onready var animation: AnimationPlayer = get_node('Animation')
 @onready var floor_raycast: RayCast2D = get_node('FloorRayCast')
 @export var enemy_variant = 'Default'
 @onready var drop_list: ItemDropList = get_node('ItemDropList')
+@export var enemy_exp = 30
 
 @export_category('Attack Variables')
 @export var can_attack = false
@@ -66,6 +69,7 @@ func animate():
 func kill_enemy():
 	drop_list.drop_item()
 	queue_free()
+	enemy_is_dead.emit(enemy_exp)
 
 func _physics_process(delta: float) -> void:
 	horizontal_movement()
