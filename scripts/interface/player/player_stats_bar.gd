@@ -33,7 +33,6 @@ func update_bar_max_value(bar_type: BAR_TYPE, max_value: int):
 	if bar_type == BAR_TYPE.EXP:
 		if exp_bar == null: exp_bar = get_node('ExpBarBackground/ExpBar')
 		exp_bar.max_value = max_value
-		#use_tween(exp_bar, max_value, 'max_value')
 	
 func update_bar_value(bar_type: BAR_TYPE, final_value: int):
 	if bar_type == BAR_TYPE.HEALTH:
@@ -46,7 +45,7 @@ func update_bar_value(bar_type: BAR_TYPE, final_value: int):
 		use_tween(exp_bar, final_value)
 		
 func use_tween(bar: TextureProgressBar, final_value: int, property: String = 'value'):
-	var tween = create_tween()
+	var tween = create_tween().bind_node(self)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(bar, property, final_value, 0.2)
@@ -55,7 +54,7 @@ func use_tween(bar: TextureProgressBar, final_value: int, property: String = 'va
 func _ready() -> void:
 	init_bar()
 	
-func on_player_current_health_updated(current_health: int) -> void:
+func on_player_current_health_updated(health: int, current_health: int, type: String) -> void:
 	print('Update current health = ', str(current_health))
 	update_bar_value(BAR_TYPE.HEALTH, current_health)
 
@@ -63,15 +62,15 @@ func on_player_max_health_updated(max_health: int) -> void:
 	print('Update max health = ', str(max_health))
 	update_bar_max_value(BAR_TYPE.HEALTH, max_health)
 
-func on_player_current_mana_updated(current_mana: int) -> void:
+func on_player_current_mana_updated(mana:int, current_mana: int, type: String) -> void:
 	print('Update current mana = ', str(current_mana))
 	update_bar_value(BAR_TYPE.MANA, current_mana)
 
-func on_player_max_mana_updated(max_mana: int) -> void:
+func on_player_max_mana_updated(max_mana: int, type: String) -> void:
 	print('Update max mana = ', str(max_mana))
 	update_bar_max_value(BAR_TYPE.MANA, max_mana)
 
-func on_player_current_exp_updated(current_exp: int) -> void:
+func on_player_current_exp_updated(exp: int, current_exp: int, type: String) -> void:
 	print('Update current exp = ', str(current_exp))
 	update_bar_value(BAR_TYPE.EXP, current_exp)
 

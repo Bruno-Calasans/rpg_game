@@ -65,16 +65,20 @@ position = Vector2(24, 84)
 collision_mask = 3
 player_gravity = 350
 
+[node name="FloatingText" parent="Player" index="10"]
+velocity = null
+gravity = null
+mass = null
+text_colors = null
+
 [node name="Hud" parent="." instance=ExtResource("12_2hwg2")]
 
 [connection signal="child_entered_tree" from="." to="." method="on_child_entered_tree"]
 [connection signal="enemy_is_dead" from="Whale" to="Player/PlayerStats" method="on_enemy_is_dead"]
 [connection signal="child_entered_tree" from="Player" to="Player" method="_on_child_entered_tree"]
-[connection signal="player_current_exp_updated" from="Player/PlayerStats" to="Player/FloatingText" method="on_player_current_exp_updated"]
 [connection signal="player_current_exp_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_current_exp_updated"]
 [connection signal="player_current_health_updated" from="Player/PlayerStats" to="Player/FloatingText" method="on_player_current_health_updated"]
 [connection signal="player_current_health_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_current_health_updated"]
-[connection signal="player_current_mana_updated" from="Player/PlayerStats" to="Player/FloatingText" method="on_player_current_mana_updated"]
 [connection signal="player_current_mana_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_current_mana_updated"]
 [connection signal="player_max_exp_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_max_exp_updated"]
 [connection signal="player_max_health_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_max_health_updated"]

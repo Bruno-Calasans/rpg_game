@@ -1,12 +1,12 @@
 extends Node
 class_name PlayerStats
 
+signal player_current_health_updated(health: int, current_health: int, type: String)
+signal player_current_mana_updated(mana: int, current_mana: int, type: String)
+signal player_current_exp_updated(exp: int, current_exp: int, type: String)
 signal player_max_health_updated(max_health: int)
-signal player_current_health_updated(current_health: int)
 signal player_max_mana_updated(max_mana: int)
-signal player_current_mana_updated(current_mana: int)
 signal player_max_exp_updated(max_exp: int)
-signal player_current_exp_updated(current_exp: int)
 
 @export_category('Objects')
 @onready var player_animation: PlayerAnimation = get_node('../Animation')
@@ -73,7 +73,7 @@ func get_lvl_exp(level: int):
 	
 func update_xp(exp: int):
 	current_experience += exp
-	player_current_exp_updated.emit(current_experience)
+	player_current_exp_updated.emit(exp, current_experience, 'increase')
 	 
 	for lvl in range(1, max_level):
 		var required_xp = get_lvl_exp(lvl)
@@ -100,7 +100,7 @@ func get_max_mana():
 
 func update_max_mana():
 	max_mana = base_mana + bonus_mana
-	player_max_mana_updated.emit(max_mana)
+	player_max_mana_updated.emit(max_mana, 'increase')
 
 func update_max_defense():
 	max_defense = base_defense + bonus_defense
@@ -108,8 +108,8 @@ func update_max_defense():
 func reset_health_mana():
 	current_health = max_health
 	current_mana = max_mana
-	player_current_health_updated.emit(current_health)
-	player_current_mana_updated.emit(current_mana)
+	player_current_health_updated.emit(max_health, current_health, 'increase')
+	player_current_mana_updated.emit(max_mana, current_mana, 'increase')
 	
 func level_up():
 	base_health += 2
@@ -133,7 +133,7 @@ func increase_health(value: int):
 	# it limits max health
 	if current_health >= max_health: 
 		current_health = max_health
-	player_current_health_updated.emit(current_health)
+	player_current_health_updated.emit(value, current_health, 'increase')
 	
 func decrease_health(value: int):
 	# if the player is taking damage
@@ -148,20 +148,19 @@ func decrease_health(value: int):
 	if current_health <= 0:
 		current_health = 0
 		player.dead = true
-		
-	player_current_health_updated.emit(current_health)
+	player_current_health_updated.emit(damage_taken, current_health, 'decrease')
 	
 func increase_mana(mana: int):
 	current_mana += mana
 	# it limits max mana
 	if current_mana >= max_mana: 
 		current_mana = max_mana
-	player_current_mana_updated.emit(current_mana)
+	player_current_mana_updated.emit(mana, current_mana, 'increase')
 
 func decrease_mana(mana: int):
 	if current_mana >= mana:
 		current_mana -= mana
-	player_current_mana_updated.emit(current_mana)
+	player_current_mana_updated.emit(mana, current_mana, 'decrease')
 	
 func verify_parry(damage: int):
 	var taken_damage = damage

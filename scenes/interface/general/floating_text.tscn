@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcjxohe7k2vco"]
+
+[ext_resource type="FontFile" uid="uid://c1kcjkpjflsx5" path="res://assets/font/thaleah_fat.ttf" id="1_r7kpu"]
+[ext_resource type="Script" path="res://scripts/interface/general/floating_text.gd" id="2_isj0u"]
+
+[node name="FloatingText" type="Label"]
+custom_minimum_size = Vector2(30, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1e-05, 1e-05)
+theme_override_fonts/font = ExtResource("1_r7kpu")
+text = "text"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_isj0u")

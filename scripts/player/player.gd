@@ -38,8 +38,6 @@ class_name Player
 @export var wall_impulse_speed = 500 # how much the x value is going increase (left or right) after jumping
 @export var wall_jump_direction = 1 # 1 (right) or -1 (left)
 
-
-
 func horizontal_movement():
 	# if you press both right and left, the character doesn't move (-1 + 1)
 	# if you press only right, the character moves to right (0 + 1)
@@ -168,3 +166,5 @@ func _physics_process(delta: float) -> void:
 	#
 	animation.animate(velocity)
 	
+func _on_child_entered_tree(node: Node) -> void:
+	print('Node = ' + node.name)
