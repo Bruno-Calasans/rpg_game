@@ -5,9 +5,8 @@
 
 [node name="FloatingText" type="Label"]
 custom_minimum_size = Vector2(30, 0)
+offset_top = -40.0
 offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(1e-05, 1e-05)
 theme_override_fonts/font = ExtResource("1_r7kpu")
 text = "text"
 horizontal_alignment = 1

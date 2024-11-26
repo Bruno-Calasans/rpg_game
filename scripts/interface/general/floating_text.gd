@@ -2,9 +2,9 @@ extends Label
 class_name FloatingText
 
 @export_category('Text Physics')
-@export var velocity = 100
-@export var gravity = 2
-@export var mass = 2
+@export var velocity: Vector2
+@export var gravity = Vector2.UP
+@export var mass = 20
 @export var text_colors = {
 	'heal': Color('#2CDB93'),
 	'damage': Color('#DB442C'),
@@ -26,9 +26,9 @@ func fade_out_text():
 	tween.set_trans(Tween.TRANS_LINEAR)
 	
 	# increases its size
-	tween.tween_property(self, 'scale', Vector2(1, 1), 0.3)
+	tween.parallel().tween_property(self, 'scale', Vector2(1, -1), 0.3).from(Vector2(0, 0))
 	# decreases its size
-	tween.tween_property(self, 'scale', Vector2(0.4, 0.4), 1).set_delay(0.3)
+	tween.parallel().tween_property(self, 'scale', Vector2(0.4, -0.4), 1).from(Vector2(1, -1)).set_delay(0.6)
 	# it fades out
 	tween.parallel().tween_property(self, 'modulate:a', 0, 0.3).from(1).set_delay(0.7)
 	tween.play()

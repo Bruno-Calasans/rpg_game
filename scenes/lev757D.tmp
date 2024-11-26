@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=4 uid="uid://ddohlvb71vd62"]
+
+[ext_resource type="TileSet" uid="uid://bu3bhgiisr7a3" path="res://resources/fences.tres" id="1_pr4i2"]
+[ext_resource type="TileSet" uid="uid://fiqqxqeni6sw" path="res://resources/decoration.tres" id="2_nwnhr"]
+[ext_resource type="TileSet" uid="uid://b7gxjo06ymdn4" path="res://resources/floor.tres" id="3_nprij"]
+[ext_resource type="TileSet" uid="uid://exhavqj0qa63" path="res://resources/rock.tres" id="4_fx3ci"]
+[ext_resource type="TileSet" uid="uid://bbfdq6fp81xxo" path="res://resources/grass.tres" id="5_vee01"]
+[ext_resource type="PackedScene" uid="uid://5d133lq3wd2m" path="res://scenes/env/background.tscn" id="6_ukfhb"]
+[ext_resource type="PackedScene" uid="uid://brq6323tjx1xw" path="res://scenes/env/mask.tscn" id="7_51g60"]
+[ext_resource type="Script" path="res://scripts/env/level.gd" id="8_eifru"]
+[ext_resource type="PackedScene" uid="uid://cunbt26748t6p" path="res://scenes/player/player.tscn" id="9_iycvf"]
+[ext_resource type="PackedScene" uid="uid://o065ta0ghwgy" path="res://scenes/enemy/enemy.tscn" id="10_7a1qa"]
+[ext_resource type="PackedScene" uid="uid://d2dbulneg15g0" path="res://scenes/enemy/whale.tscn" id="11_ih5fw"]
+[ext_resource type="PackedScene" uid="uid://wp7e6wn2e88n" path="res://scenes/interface/general/hud.tscn" id="12_2hwg2"]
+
+[sub_resource type="Environment" id="Environment_gro8d"]
+background_mode = 3
+glow_enabled = true
+glow_hdr_threshold = 1.5
+
+[node name="Level" type="Node2D"]
+texture_filter = 1
+script = ExtResource("8_eifru")
+hour = 22
+
+[node name="LevelDesign" type="Node2D" parent="."]
+
+[node name="Fence" type="TileMapLayer" parent="LevelDesign"]
+tile_map_data = PackedByteArray("AAABAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAQAAMAAAAAAAAAAAAOAAMAAAAAAAAAAAA=")
+tile_set = ExtResource("1_pr4i2")
+
+[node name="Decoration" type="TileMapLayer" parent="LevelDesign"]
+tile_map_data = PackedByteArray("AAAGAAMAAAAAAAAAAAAAAAMAAAAAAAAAABANAAMAAAAAAAAAAAARAAMAAAAAAAAAAAA=")
+tile_set = ExtResource("2_nwnhr")
+
+[node name="Floor" type="TileMapLayer" parent="LevelDesign"]
+z_index = 1
+tile_map_data = PackedByteArray("AAAAAAQAAAAAAAAAAAAAAAUAAAAAAAEAAAABAAQAAAABAAAAAAABAAUAAAABAAEAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAFAAQAAAABAAAAAAAEAAQAAAABAAAAAAAGAAQAAAABAAAAAAAHAAQAAAABAAAAAAAIAAQAAAABAAAAAAAJAAQAAAABAAAAAAAKAAQAAAABAAAAAAAKAAUAAAABAAIAAAAJAAUAAAABAAIAAAAIAAUAAAABAAIAAAAHAAUAAAABAAIAAAAGAAUAAAABAAIAAAAFAAUAAAABAAIAAAAEAAUAAAABAAIAAAADAAUAAAABAAIAAAACAAUAAAABAAIAAAALAAQAAAABAAAAAAAMAAQAAAABAAAAAAANAAQAAAABAAAAAAAOAAQAAAABAAAAAAAPAAQAAAABAAAAAAAQAAQAAAABAAAAAAARAAQAAAABAAAAAAAQAAUAAAABAAIAAAAPAAUAAAABAAIAAAAOAAUAAAABAAIAAAANAAUAAAABAAIAAAAMAAUAAAABAAIAAAALAAUAAAABAAIAAAARAAUAAAABAAIAAAASAAUAAAABAAIAAAASAAQAAAABAAAAAAATAAQAAAACAAAAAAATAAUAAAACAAIAAAAAAAYAAAAAAAEAAAAAAAcAAAAAAAEAAAAAAAgAAAAAAAEAAAAAAAkAAAAAAAEAAAABAAkAAAACAAEAAAABAAgAAAACAAEAAAABAAcAAAACAAEAAAABAAYAAAACAAEAAAAAAAoAAAAAAAEAAAABAAoAAAACAAEAAAAAAAsAAAAAAAEAAAABAAsAAAACAAEAAAAAAAwAAAAAAAEAAAABAAwAAAACAAEAAAABAA0AAAACAAEAAAABAA4AAAACAAIAAAAAAA4AAAABAAIAAAAAAA0AAAABAAEAAAD//w4AAAABAAIAAAD+/w4AAAABAAIAAAD+/w0AAAABAAAAAAD//w0AAAABAAAAAAD9/w4AAAABAAIAAAD9/w0AAAABAAEAAAD9/wwAAAACAAEAAAD9/woAAAACAAEAAAD9/wsAAAACAAEAAAD9/wkAAAACAAEAAAD9/wgAAAACAAEAAAD9/wcAAAACAAEAAAD9/wYAAAACAAEAAAD9/wUAAAACAAEAAAD9/wQAAAACAAAAAAD8/wQAAAAAAAAAAAD8/wUAAAAAAAEAAAD8/wgAAAAAAAEAAAD8/wcAAAAAAAEAAAD8/wYAAAAAAAEAAAD8/wkAAAAAAAEAAAD8/woAAAAAAAEAAAD8/wsAAAAAAAEAAAD8/wwAAAAAAAEAAAD8/w0AAAAAAAEAAAD8/w4AAAAAAAIAAAA=")
+tile_set = ExtResource("3_nprij")
+
+[node name="Rock" type="TileMapLayer" parent="LevelDesign"]
+tile_map_data = PackedByteArray("AAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAIAAMAAgAAAAAAAAAGAAMAAAAAAAAAAAARAAMAAAAAAAAAAAA=")
+tile_set = ExtResource("4_fx3ci")
+
+[node name="Grass" type="TileMapLayer" parent="LevelDesign"]
+tile_map_data = PackedByteArray("AAAOAAcAAAAAAAAAAAANAAcAAAAAAAAAAAAMAAcAAQAAAAAAAAASAAcAAAAAAAAAAAAUAAcAAAAAAAAAAAAYAAcAAAAAAAAAAAAZAAcAAAAAAAAAAAAaAAcAAAAAAAAAAAAbAAcAAAAAAAAAAAAcAAcAAAAAAAAAAAAjAAcAAAAAAAAAAAAhAAcAAAAAAAAAAAABAAcAAQAAAAAAAAACAAcAAQAAAAAAAAAAAAcAAQAAAAAAAAA=")
+tile_set = ExtResource("5_vee01")
+
+[node name="Mask" parent="LevelDesign" instance=ExtResource("7_51g60")]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("6_ukfhb")]
+script = null
+
+[node name="EnvEffect" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gro8d")
+
+[node name="Enemy" parent="." instance=ExtResource("10_7a1qa")]
+visible = false
+
+[node name="Whale" parent="." instance=ExtResource("11_ih5fw")]
+position = Vector2(261, 104)
+
+[node name="Player" parent="." instance=ExtResource("9_iycvf")]
+position = Vector2(24, 84)
+collision_mask = 3
+player_gravity = 350
+
+[node name="FloatingText" parent="Player" index="10"]
+velocity = null
+gravity = null
+mass = null
+text_colors = null
+
+[node name="Hud" parent="." instance=ExtResource("12_2hwg2")]
+
+[connection signal="child_entered_tree" from="." to="." method="on_child_entered_tree"]
+[connection signal="enemy_is_dead" from="Whale" to="Player/PlayerStats" method="on_enemy_is_dead"]
+[connection signal="child_entered_tree" from="Player" to="Player" method="_on_child_entered_tree"]
+[connection signal="player_current_exp_updated" from="Player/PlayerStats" to="Player/FloatingText" method="on_player_current_exp_updated"]
+[connection signal="player_current_exp_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_current_exp_updated"]
+[connection signal="player_current_health_updated" from="Player/PlayerStats" to="Player/FloatingText" method="on_player_current_health_updated"]
+[connection signal="player_current_health_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_current_health_updated"]
+[connection signal="player_current_mana_updated" from="Player/PlayerStats" to="Player/FloatingText" method="on_player_current_mana_updated"]
+[connection signal="player_current_mana_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_current_mana_updated"]
+[connection signal="player_max_exp_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_max_exp_updated"]
+[connection signal="player_max_health_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_max_health_updated"]
+[connection signal="player_max_mana_updated" from="Player/PlayerStats" to="Hud/PlayerStatsBar" method="on_player_max_mana_updated"]
+
+[editable path="Player"]
+[editable path="Hud"]
+[editable path="Hud/PlayerStatsBar"]

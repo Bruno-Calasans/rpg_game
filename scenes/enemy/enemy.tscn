@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://o065ta0ghwgy"]
+[gd_scene load_steps=9 format=3 uid="uid://o065ta0ghwgy"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_rr20k"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_animation.gd" id="2_3gmt7"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/enemy/enemy_collision_area.gd" id="3_qw4ow"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_stats.gd" id="5_ld5ei"]
 [ext_resource type="Script" path="res://scenes/enemy/item_drop_list.gd" id="6_ayi4k"]
+[ext_resource type="PackedScene" uid="uid://dcjxohe7k2vco" path="res://scenes/interface/general/floating_text.tscn" id="7_c1f46"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_floating_text.gd" id="8_8dac1"]
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
@@ -50,8 +52,12 @@ script = ExtResource("5_ld5ei")
 [node name="ItemDropList" type="Node2D" parent="."]
 script = ExtResource("6_ayi4k")
 
+[node name="EnemyFloatingText" parent="." instance=ExtResource("7_c1f46")]
+script = ExtResource("8_8dac1")
+
 [connection signal="animation_finished" from="Animation" to="Animation" method="on_animation_finished"]
 [connection signal="area_entered" from="EnemyCollisionArea" to="EnemyCollisionArea" method="on_area_entered"]
 [connection signal="timeout" from="EnemyCollisionArea/InvencibilityTimer" to="EnemyCollisionArea" method="on_invencibility_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="on_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="on_detection_area_body_exited"]
+[connection signal="enemy_health_update" from="EnemyStats" to="EnemyFloatingText" method="on_enemy_health_update"]
