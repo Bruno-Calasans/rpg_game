@@ -55,25 +55,25 @@ func _ready() -> void:
 	init_bar()
 	
 func on_player_current_health_updated(health: int, current_health: int, type: String) -> void:
-	print('Update current health = ', str(current_health))
+	#print('Update current health = ', str(current_health))
 	update_bar_value(BAR_TYPE.HEALTH, current_health)
 
 func on_player_max_health_updated(max_health: int) -> void:
-	print('Update max health = ', str(max_health))
+	#print('Update max health = ', str(max_health))
 	update_bar_max_value(BAR_TYPE.HEALTH, max_health)
 
 func on_player_current_mana_updated(mana:int, current_mana: int, type: String) -> void:
-	print('Update current mana = ', str(current_mana))
+	#print('Update current mana = ', str(current_mana))
 	update_bar_value(BAR_TYPE.MANA, current_mana)
 
 func on_player_max_mana_updated(max_mana: int, type: String) -> void:
-	print('Update max mana = ', str(max_mana))
+	#print('Update max mana = ', str(max_mana))
 	update_bar_max_value(BAR_TYPE.MANA, max_mana)
 
 func on_player_current_exp_updated(exp: int, current_exp: int, type: String) -> void:
-	print('Update current exp = ', str(current_exp))
+	#print('Update current exp = ', str(current_exp))
 	update_bar_value(BAR_TYPE.EXP, current_exp)
 
 func on_player_max_exp_updated(max_exp: int) -> void:
-	print('Update max exp = ', str(max_exp))
+	#print('Update max exp = ', str(max_exp))
 	update_bar_max_value(BAR_TYPE.EXP, max_exp)

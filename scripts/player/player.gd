@@ -64,7 +64,7 @@ func vertical_moviment():
 			velocity.x += wall_impulse_speed * wall_jump_direction
 		# jump from a floor
 		else:
-			print('jumping')
+			#print('jumping')
 			velocity.y = jump_speed
 		
 func gravity(delta: float):
@@ -119,14 +119,14 @@ func crouch():
 	
 	# crouch
 	if Input.is_action_pressed('crouch') and can_crouch :
-		print('Player is crouching')
+		#print('Player is crouching')
 		crouching = true
 		can_move = false
 		can_crouch_now = true
 	
 	# standing
 	if Input.is_action_just_released('crouch') and can_stand:
-		print('Player is standing')
+		#print('Player is standing')
 		crouching = false
 		can_move = true
 		can_crouch_now = false
@@ -166,5 +166,3 @@ func _physics_process(delta: float) -> void:
 	#
 	animation.animate(velocity)
 	
-func _on_child_entered_tree(node: Node) -> void:
-	print('Node = ' + node.name)

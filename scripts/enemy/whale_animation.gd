@@ -47,7 +47,7 @@ func on_animation_finished(anim_name: StringName) -> void:
 			play('kill')
 			
 		"kill":
-			print('Enemy is dead')
+			print('Whale is dead')
 			enemy.kill_enemy()
 			# clear memory
 			#enemy.queue_free()

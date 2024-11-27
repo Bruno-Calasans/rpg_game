@@ -53,6 +53,7 @@ script = ExtResource("5_ld5ei")
 script = ExtResource("6_ayi4k")
 
 [node name="EnemyFloatingText" parent="." instance=ExtResource("7_c1f46")]
+visible = false
 script = ExtResource("8_8dac1")
 
 [connection signal="animation_finished" from="Animation" to="Animation" method="on_animation_finished"]

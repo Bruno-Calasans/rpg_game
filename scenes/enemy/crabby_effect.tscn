@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://2n4b25hndbjr"]
+
+[ext_resource type="Texture2D" uid="uid://5m5aoq8yosr2" path="res://assets/enemy/crabby/attack_effect.png" id="1_wyi62"]
+[ext_resource type="Script" path="res://scripts/enemy/crabby/crabby_effect.gd" id="2_lhiq6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l53bw"]
+atlas = ExtResource("1_wyi62")
+region = Rect2(0, 0, 118, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yc22"]
+atlas = ExtResource("1_wyi62")
+region = Rect2(118, 0, 118, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c075w"]
+atlas = ExtResource("1_wyi62")
+region = Rect2(236, 0, 118, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8wki4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l53bw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yc22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c075w")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="CrabbyEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_8wki4")
+animation = &"attack"
+autoplay = "default"
+script = ExtResource("2_lhiq6")

@@ -9,14 +9,14 @@ func create_effect() -> Effect:
 	return player_effect
 	
 func apply_landing_effect(offset: Vector2):
-	print('Applying landing effect')
+	#print('Applying landing effect')
 	var effect = create_effect()
 	player.add_child(effect)
 	effect.global_position = player.global_position + offset
 	effect.play('landing')
 
 func apply_jump_effect(offset: Vector2):
-	print('Applying jump effect')
+	#print('Applying jump effect')
 	var effect = create_effect()
 	player.add_child(effect)
 	effect.global_position = player.global_position + offset
@@ -24,7 +24,7 @@ func apply_jump_effect(offset: Vector2):
 	effect.play('jump')
 	
 func apply_run_effect(offset: Vector2):
-	print('Applying run effect')
+	#print('Applying run effect')
 	var effect = create_effect()
 	player.add_child(effect)
 	effect.global_position = player.global_position + offset

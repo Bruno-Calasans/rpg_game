@@ -30,10 +30,12 @@ func damage_behavior():
 		enemy.can_attack = false
 	
 func attack_behavior():
-	if enemy.can_attack:
+	if enemy.can_attack and not enemy.attacking:
 		if enemy.direction == 1:
+			enemy.attacking = true
 			play('attack_right')
 		elif enemy.direction == -1:
+			enemy.attacking = true
 			play('attack_left')
 		
 func on_animation_finished(anim_name: StringName) -> void:
@@ -41,11 +43,11 @@ func on_animation_finished(anim_name: StringName) -> void:
 		"attack_left":
 			enemy.can_attack = false
 			enemy.being_hit = false
-			print('Resets attack - left')
+			enemy.attacking = false
 		"attack_right":
 			enemy.can_attack = false
 			enemy.being_hit = false
-			print('Resets attack - right')
+			enemy.attacking = false
 		"hit":
 			enemy.set_physics_process(true)
 			enemy.can_attack = true

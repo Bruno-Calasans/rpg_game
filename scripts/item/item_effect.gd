@@ -8,7 +8,7 @@ func create_effect() -> ItemEffect:
 	return item_effect
 	
 func apply_interaction_effect():
-	print('Applying interact effect')
+	#print('Applying interact effect')
 	var item: Item = get_parent()
 	var effect = create_effect()
 	var level = get_window().get_node('Level')

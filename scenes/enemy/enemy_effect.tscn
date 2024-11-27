@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkbildne3omau"]
+
+[ext_resource type="Script" path="res://scenes/enemy/enemy_effect.gd" id="1_5cq7t"]
+
+[node name="EnemyEffect" type="AnimatedSprite2D"]
+visible = false
+script = ExtResource("1_5cq7t")

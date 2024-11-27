@@ -142,11 +142,11 @@ func _on_animation_finished(anim_name: StringName) -> void:
 			# player returns to previous state after being hit
 			if player.parrying:
 				play('parry')
-				print('Player continues to parry')
+				#print('Player continues to parry')
 			
 			if player.crouching:
 				play('crouch')
-				print('Player continues to crouching')
+				#print('Player continues to crouching')
 		"death":
 			# ends game and finish player physics
 			player.game_over = true

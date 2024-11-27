@@ -178,9 +178,7 @@ func verify_parry(damage: int):
 func _physics_process(delta: float) -> void:
 	# test player taking damage
 	if Input.is_action_just_pressed('test'):
-		print('Health before: ', current_health)
 		decrease_health(5)
-		print('Health after: ', current_health)
 		
 func on_enemy_is_dead(exp: int) -> void:
 	print('Earned xp = ', str(exp))

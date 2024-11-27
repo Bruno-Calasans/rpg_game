@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c17rslqmkrsqs"]
+[gd_scene load_steps=30 format=3 uid="uid://c17rslqmkrsqs"]
 
 [ext_resource type="PackedScene" uid="uid://o065ta0ghwgy" path="res://scenes/enemy/enemy.tscn" id="1_y2i00"]
 [ext_resource type="Script" path="res://scripts/enemy/crabby/crabby.gd" id="2_88dso"]
@@ -10,9 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://btrwmc5f4sd37" path="res://assets/enemy/crabby/attack.png" id="7_k0cnx"]
 [ext_resource type="Script" path="res://scripts/enemy/crabby/crabby_animation.gd" id="8_1326o"]
 [ext_resource type="Script" path="res://scripts/enemy/crabby/crabby_drop_list.gd" id="10_0dyrj"]
+[ext_resource type="Texture2D" uid="uid://5m5aoq8yosr2" path="res://assets/enemy/crabby/attack_effect.png" id="11_s6rq4"]
+[ext_resource type="PackedScene" uid="uid://2n4b25hndbjr" path="res://scenes/enemy/crabby_effect.tscn" id="11_vf7y0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_haikp"]
-size = Vector2(21, 18)
+size = Vector2(22.25, 18)
 
 [sub_resource type="Animation" id="Animation_jyq0a"]
 length = 0.001
@@ -27,6 +29,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_k0cnx")]
 }
 
 [sub_resource type="Animation" id="Animation_0sn4m"]
@@ -105,6 +131,20 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(-2, 5), Vector2(-2, 5.5)]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CrabbyEffect")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"apply_attack_effect"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_ncpon"]
 resource_name = "attack"
@@ -113,62 +153,100 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Texture:frame")
+tracks/0/path = NodePath("Texture:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [ExtResource("7_k0cnx")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Texture:flip_h")
+tracks/1/path = NodePath("Texture:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [4]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("EnemyAttackArea/Collision:shape:size")
+tracks/2/path = NodePath("Texture:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(68, 12), Vector2(60, 9)]
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("EnemyAttackArea/Collision:position")
+tracks/3/path = NodePath("EnemyAttackArea/Collision:shape:size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-2, 5), Vector2(-2, 5.5)]
+"values": [Vector2(68, 12), Vector2(60, 9)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("EnemyAttackArea/Collision:disabled")
+tracks/4/path = NodePath("EnemyAttackArea/Collision:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2, 5), Vector2(-2, 5.5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EnemyAttackArea/Collision:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CrabbyEffect")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"apply_attack_effect"
+}]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Texture:flip_h")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ofrke"]
@@ -307,48 +385,6 @@ tracks/3/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_ohrcw"]
-resource_name = "run"
-length = 0.5
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Texture:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_xx5qb")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Texture:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Texture:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4]
-}
-
 [sub_resource type="Animation" id="Animation_4ynci"]
 resource_name = "kill"
 step = 0.1
@@ -401,6 +437,48 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_ohrcw"]
+resource_name = "run"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_xx5qb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3t0q0"]
 _data = {
 "RESET": SubResource("Animation_jyq0a"),
@@ -417,10 +495,44 @@ _data = {
 size = Vector2(68, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ai504"]
-size = Vector2(21, 18)
+size = Vector2(22, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1idg3"]
 size = Vector2(118, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5c4pb"]
+atlas = ExtResource("11_s6rq4")
+region = Rect2(0, 0, 118, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86e5d"]
+atlas = ExtResource("11_s6rq4")
+region = Rect2(118, 0, 118, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taosv"]
+atlas = ExtResource("11_s6rq4")
+region = Rect2(236, 0, 118, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ck6v3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5c4pb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86e5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_taosv")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="Crabby" instance=ExtResource("1_y2i00")]
 script = ExtResource("2_88dso")
@@ -428,7 +540,7 @@ script = ExtResource("2_88dso")
 [node name="Collision" parent="." index="0"]
 visible = true
 z_index = 1
-position = Vector2(-0.5, 4)
+position = Vector2(-1.125, 4)
 shape = SubResource("RectangleShape2D_haikp")
 
 [node name="Texture" parent="." index="1"]
@@ -452,8 +564,11 @@ position = Vector2(-2, 5)
 shape = SubResource("RectangleShape2D_50210")
 disabled = true
 
+[node name="EnemyCollisionArea" parent="." index="5"]
+position = Vector2(0, -1)
+
 [node name="Collision" parent="EnemyCollisionArea" index="0"]
-position = Vector2(-0.5, 4)
+position = Vector2(-1, 5)
 shape = SubResource("RectangleShape2D_ai504")
 
 [node name="Collision" parent="DetectionArea" index="0"]
@@ -466,5 +581,8 @@ script = ExtResource("3_chpsr")
 [node name="ItemDropList" parent="." index="8"]
 script = ExtResource("10_0dyrj")
 
-[node name="EnemyFloatingText" parent="." index="9"]
+[node name="CrabbyEffect" parent="." index="10" instance=ExtResource("11_vf7y0")]
 visible = false
+sprite_frames = SubResource("SpriteFrames_ck6v3")
+
+[connection signal="animation_finished" from="CrabbyEffect" to="CrabbyEffect" method="on_animation_finished"]
