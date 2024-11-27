@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://5cu1ocy5wa5k"]
+
+[ext_resource type="PackedScene" uid="uid://o065ta0ghwgy" path="res://scenes/enemy/enemy.tscn" id="1_8wvll"]
+[ext_resource type="Script" path="res://scripts/enemy/pink_star/pink_star.gd" id="2_5xwvy"]
+[ext_resource type="Script" path="res://scripts/enemy/pink_star/pink_star_stats.gd" id="3_8yi4a"]
+
+[node name="PinkStar" instance=ExtResource("1_8wvll")]
+script = ExtResource("2_5xwvy")
+
+[node name="EnemyStats" parent="." index="7"]
+script = ExtResource("3_8yi4a")
