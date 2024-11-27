@@ -141,13 +141,14 @@ func decrease_health(value: int):
 	current_health -= damage_taken
 	
 	if current_health > 0:
-		player.attacking = false
+		# player can't attack
+		#player.attacking = false
 		player.being_hit = true
-		# play damage animation
 		
 	if current_health <= 0:
 		current_health = 0
 		player.dead = true
+		
 	player_current_health_updated.emit(damage_taken, current_health, 'decrease')
 	
 func increase_mana(mana: int):

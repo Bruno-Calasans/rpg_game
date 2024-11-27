@@ -16,6 +16,7 @@ signal enemy_is_dead(exp: int)
 @export var aproximity_threshold = 1
 @export var dead = false
 @export var being_hit = false
+@export var direction = 1
 
 @export_category('Horizontal Move')
 @export var enemy_gravity = 350

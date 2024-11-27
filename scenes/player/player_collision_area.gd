@@ -16,7 +16,7 @@ func on_collision_area_entered(area: Area2D) -> void:
 	
 	# if it's a enemy attack
 	if area.name == 'EnemyAttackArea':
-		var invencibility_timer: Timer = get_node('InvencibilityTimer')
+		#var invencibility_timer: Timer = get_node('InvencibilityTimer')
 		var enemy_stats: EnemyStats = area.get_parent().get_node('EnemyStats')
 		damage = enemy_stats.damage
 		
@@ -25,8 +25,8 @@ func on_collision_area_entered(area: Area2D) -> void:
 	print('Player was damaged = ' + str(damage))
 	
 	# it stops collision
-	toggle_monitoring()
+	set_deferred('monitoring', false)
 	invencibility_timer.start(invencibility_time)
 		
 func on_invencibility_timer_timeout() -> void:
-	toggle_monitoring()
+	set_deferred('monitoring', true)

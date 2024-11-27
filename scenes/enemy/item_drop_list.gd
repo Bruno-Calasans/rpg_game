@@ -29,10 +29,18 @@ func spawn_item(item_info: ItemInfo):
 # determines which items and its quantity gonna drop
 func drop_item():
 	
+	var max_itens = randi_range(1, 3)
+	var dropped_itens = 0
+	
 	for item_info in drop_list:
+		
+		if dropped_itens >= max_itens: break
+		
 		var drop_chance = randi_range(1, 100)
 		var item_drop_bonus = calc_drop_bonus()
 		
 		if drop_chance >= item_info.drop_chance:
 			spawn_item(item_info)
+			dropped_itens += 1
+			
 			

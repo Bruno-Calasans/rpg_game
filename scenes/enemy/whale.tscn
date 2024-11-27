@@ -496,3 +496,6 @@ script = ExtResource("9_u2hh6")
 
 [node name="ItemDropList" parent="." index="8"]
 script = ExtResource("8_gyvtt")
+
+[node name="EnemyFloatingText" parent="." index="9"]
+visible = false

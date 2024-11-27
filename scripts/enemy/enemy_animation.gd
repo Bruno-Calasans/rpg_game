@@ -19,6 +19,7 @@ func verify_direction(velocity: Vector2):
 		texture.flip_h = true 
 		# deslocate the raycast position to the right
 		floor_raycast.position.x = default_floor_raycast_x_position
+		enemy.direction = 1
 	
 	# player is on the left
 	if direction < 0:
@@ -26,6 +27,7 @@ func verify_direction(velocity: Vector2):
 		texture.flip_h = false 
 		# deslocate the raycast position to the left
 		floor_raycast.position.x = -default_floor_raycast_x_position
+		enemy.direction = -1
 		
 func damage_behavior():
 	pass
