@@ -4,7 +4,8 @@ class_name ItemInfo
 enum ITEM_TYPE {
 	CONSUMABLE,
 	EQUIPMENT,
-	RESOURCE
+	RESOURCE,
+	WEAPON
 }
 
 var item_name: String = ''

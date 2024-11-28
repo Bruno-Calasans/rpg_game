@@ -4,7 +4,7 @@ class_name PlayerCollisionArea
 @onready var player_stats: PlayerStats = get_parent().get_node('PlayerStats')
 @onready var invencibility_timer: Timer = get_node('InvencibilityTimer')
 
-@export var invencibility_time = 1
+@export var invencibility_time = 2
 @export var can_be_damaged = true
 
 func toggle_monitoring():

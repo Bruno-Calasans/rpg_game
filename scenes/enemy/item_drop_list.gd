@@ -43,4 +43,3 @@ func drop_item():
 			spawn_item(item_info)
 			dropped_itens += 1
 			
-			
