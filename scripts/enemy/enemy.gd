@@ -63,15 +63,16 @@ func horizontal_movement():
 		#print('Enemy stops')
 		
 func gravity(delta: float):
-	velocity.y = delta * enemy_gravity
+	velocity.y += delta * enemy_gravity
 
 func animate():
 	animation.animate(velocity)
 	
 func kill_enemy():
 	drop_list.drop_item()
-	queue_free()
 	enemy_is_dead.emit(enemy_exp)
+	queue_free()
+	print(name + ' was killed')
 
 func _physics_process(delta: float) -> void:
 	horizontal_movement()

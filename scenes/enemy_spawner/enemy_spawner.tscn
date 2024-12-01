@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c450ydeovvcj2"]
+
+[ext_resource type="Script" path="res://scripts/enemy_spawner/enemy_spawner.gd" id="1_q1r1y"]
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_q1r1y")
+
+[node name="SpawnCooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="SpawnCooldown" to="." method="on_spawn_cooldown_timeout"]

@@ -480,6 +480,7 @@ libraries = {
 autoplay = "pulse"
 
 [node name="PlayerStats" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("7_knuei")
 
 [node name="PlayerAttackArea" type="Area2D" parent="."]

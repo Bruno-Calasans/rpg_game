@@ -18,17 +18,18 @@ func horizontal_behavior(velocity: Vector2):
 		play('idle')
 	
 func damage_behavior():
-	enemy.set_physics_process(false)
 	
+	enemy.set_physics_process(false)
 	if enemy.dead:
 		enemy.being_hit = false
 		enemy.can_attack = false
 		play('death')
 		
 	elif enemy.being_hit:
-		play('hit')
 		enemy.can_attack = false
-	
+		enemy.attacking = false
+		play('hit')
+		
 func attack_behavior():
 	if enemy.can_attack and not enemy.attacking:
 		if enemy.direction == 1:
@@ -42,21 +43,20 @@ func on_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		"attack_left":
 			enemy.can_attack = false
-			enemy.being_hit = false
 			enemy.attacking = false
 		"attack_right":
 			enemy.can_attack = false
-			enemy.being_hit = false
 			enemy.attacking = false
 		"hit":
 			enemy.set_physics_process(true)
-			enemy.can_attack = true
 			enemy.being_hit = false
 			
 		"death":
+			enemy.can_attack = false
+			enemy.being_hit = false
+			enemy.attacking = false
 			play('kill')
 			
 		"kill":
-			print('Crabby is dead')
 			enemy.kill_enemy()
 			
